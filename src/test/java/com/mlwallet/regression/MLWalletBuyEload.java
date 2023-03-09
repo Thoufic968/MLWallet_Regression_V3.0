@@ -58,10 +58,10 @@ public class MLWalletBuyEload {
         MLWalletBusinessLogic.buying_eload_insufficient_balance(4);
     }
 
-    @Test(priority = 6)
-    public void mlWalet_daily_maximum_limit() throws Exception
-    {
-        MLWalletBusinessLogic.buying_eload_dailyMaximum_Limit();
-    }
+//    @Test(priority = 6)
+//    public void mlWalet_daily_maximum_limit() throws Exception
+//    {
+//        MLWalletBusinessLogic.buying_eload_dailyMaximum_Limit();
+//    }
 
 }

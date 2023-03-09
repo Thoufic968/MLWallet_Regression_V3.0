@@ -399,7 +399,7 @@ public class Utilities extends ExtentReporter {
             ExtentReporter.extentLogger("checkElementPresent", "" + validationtext + " is displayed");
             if (platform.equalsIgnoreCase("web")) {
                 DriverManager.getDriver().findElement(byLocator).click();
-            } else if (platform.equalsIgnoreCase("mpwa")) {
+            } else if (platform.equalsIgnoreCase("Android")) {
                 DriverManager.getAppiumDriver().findElement(byLocator).click();
             }
             logger.info("Clicked on " + validationtext);

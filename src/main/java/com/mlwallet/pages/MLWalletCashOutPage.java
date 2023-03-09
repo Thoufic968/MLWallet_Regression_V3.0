@@ -64,7 +64,7 @@ public class MLWalletCashOutPage {
 
     public static By objTransactionNo = By.xpath("//*[@text='Transaction No.']/following-sibling::android.widget.TextView");
 
-  public static By objTransactionReferenceNo = By.xpath("");
+    public static By objTransactionReferenceNo = By.xpath("");
 
     public static By objTransactionSuccessMessage = By.xpath("//*[@text='Transaction Successful']");
 
@@ -84,4 +84,55 @@ public class MLWalletCashOutPage {
     public static By objMinimumTransactionErrorMsg = By.xpath("(//*[@resource-id='modal-confirm-button']/preceding-sibling::android.widget.TextView)[2]");
 
 //    public static By objReceiversName = By.xpath("//*[@text='Review Transaction']");
+
+
+
+
+
+//============================================= Phase 2 ==============================================//
+
+    public static By objSearchBank = By.xpath("//*[@class='android.widget.EditText']");
+
+    public static By objNoRecentTransactionTxt = By.xpath("//*[@text='No Recent Transaction']");
+
+    public static By objAmountRequiredErrorMsg = By.xpath("//*[@text='PHP']/parent::android.view.ViewGroup/following-sibling::android.widget.TextView");
+
+    public static By objNickName = By.xpath("//*[@class='android.widget.EditText']");
+
+    public static By objSaveRecipientBtn = By.xpath("//*[@text='Save Recipient']");
+
+    public static By objSavedBackAccount = By.xpath("//*[@text='Saved Bank Accounts']");
+
+    public static By objNickNameInSavedBankAcc(String sNickName){
+        return By.xpath("//*[@text='"+sNickName+"']");
+    }
+
+    public static By objRecipientExistMsg = By.xpath("//*[@text='Recipient already exists.']");
+
+    public static By objCashOutWithdraw = By.xpath("//*[@text='Cash out / Withdraw']");
+
+    public static By objCashOutOptions = By.xpath("//*[@text='Cash out options']");
+
+    public static By objCashOutOngoingTransaction = By.xpath("//*[@text='Ongoing Transactions']");
+
+    public static By objCashOutPage = By.xpath("//*[@text='Cash Out']");
+
+    public static By ObjCashOutToBranch = By.xpath("//*[@text='Cash Out To Branch']");
+    public static By objUserName = By.xpath("(//*[@text='Cash Out To Branch']/following-sibling::android.widget.TextView)[1]");
+
+    public static By objUserMobileNumber = By.xpath("(//*[@text='Cash Out To Branch']/following-sibling::android.widget.TextView)[2]");
+
+    public static By objMLWalletBalance = By.xpath("//*[contains(@text,'ML Wallet Balance')]");
+
+    public static  By objCashOutInstructions = By.xpath("//*[@text='Cash Out']//following-sibling::android.view.ViewGroup/child::android.widget.TextView");
+
+    public static By cashOutBackArrowBtn = By.xpath("(//*[@class='android.view.ViewGroup' and ./parent::*[@class='android.view.ViewGroup' and ./parent::*[@class='android.view.ViewGroup' and ./parent::*[@class='android.view.ViewGroup'] and (./preceding-sibling::* | ./following-sibling::*)[@class='android.view.ViewGroup' and ./*[@class='android.widget.ScrollView']]]]]/*/*[@text and ./parent::*[@class='android.view.ViewGroup']])[1]");
+
+    public static By objCashOutToBranchBackBtn = By.xpath("//*[@text='Cash Out']/parent::android.view.ViewGroup/preceding-sibling::android.view.ViewGroup");
+
+    public static By objResendCode = By.xpath("//*[contains(@text,'Resend Code')]");
+
+    public static By objOneTimePinBackBtn = By.xpath("//*[@text='One Time Pin']/parent::android.view.ViewGroup/preceding-sibling::android.view.ViewGroup");
+
+    public static By objReviewTransaction = By.xpath("//*[@text='Review Transaction']");
 }

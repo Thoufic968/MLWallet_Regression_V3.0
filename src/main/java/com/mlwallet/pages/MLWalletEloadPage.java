@@ -22,16 +22,16 @@ public class MLWalletEloadPage {
 	public static By objPromoName=By.xpath("(//*[android.view.ViewGroup]/child::android.view.ViewGroup/child::android.widget.TextView)[5]");
 	public static By objConfirmBtn=By.xpath("//*[@text='Confirm']");
 	public static By objTransactionDetailsPage=By.xpath("//*[@text='Transaction Details']");
-	public static By objTypeOfPromoUsed=By.xpath("(//*[@resource-id='Type']/following-sibling::android.widget.TextView)[1]");
-	public static By objMobileNumber=By.xpath("(//*[@resource-id='Mobile Number']/following-sibling::android.widget.TextView)[1]");
-	public static By objAmountToSend=By.xpath("(//*[@resource-id='Amount to Send']/following-sibling::android.widget.TextView)[1]");
-	public static By objServiceFee=By.xpath("(//*[@resource-id='Service Fee']/following-sibling::android.widget.TextView)[1]");
-	public static By objTotalAmount=By.xpath("(//*[@resource-id='Total']/following-sibling::android.widget.TextView)[1]");
+	public static By objTypeOfPromoUsed=By.xpath("(//*[@resource-id='Type'])[2]");
+	public static By objMobileNumber=By.xpath("(//*[@resource-id='Mobile Number'])[2]");
+	public static By objAmountToSend=By.xpath("(//*[@resource-id='Amount to Send'])[2]");
+	public static By objServiceFee=By.xpath("(//*[@resource-id='Service Fee'])[2]");
+	public static By objTotalAmount=By.xpath("(//*[@resource-id='Total'])[2]");
 	
-	public static By objErrorMsg=By.xpath("//*[android.view.ViewGroup]/(child::android.widget.TextView)[4]");
+	public static By objErrorMsg=By.xpath("//*[android.widget.EditText]/following-sibling::android.widget.TextView");
 	
-	public static By objInsufficientBalPopup=By.xpath("(//*[@text='Ok']/parent::android.view.ViewGroup//preceding-sibling::android.widget.TextView)[2]");
-	public static By objOkBtn=By.xpath("(//*[@text='Ok']/parent::android.view.ViewGroup//preceding-sibling::android.widget.TextView)[3]");
+	public static By objInsufficientBalPopup=By.xpath("(//*[@resource-id='modal-confirm-button']/preceding-sibling::android.widget.TextView)[2]");
+	public static By objOkBtn=By.xpath("//*[@text='Ok']");
 	
 	
 	

@@ -42,43 +42,43 @@ public class MLWalletRegressionScripts {
 	@Test(priority = 3)
 	public void cashOutWithdrawBank() throws Exception
 	{
-		MLWalletBusinessLogic.cashOutWithdrawBank("100");
+		MLWalletBusinessLogic.cashOutWithdrawBank_WM_TC_01("100");
 	}
 
 	@Test(priority = 4)
 	public void cashOutWithInvalidAccNumber() throws Exception
 	{
-		MLWalletBusinessLogic.cashOutWithInvalidAccNumber();
+		MLWalletBusinessLogic.cashOutWithInvalidAccNumber_WM_TC_02();
 	}
 
 	@Test(priority = 5)
 	public void cashOutWithdrawBankMaxAmount() throws Exception
 	{
-		MLWalletBusinessLogic.cashOutWithdrawBankMaxAmount("60000");
+		MLWalletBusinessLogic.cashOutWithdrawBankMaxAmount_WM_TC_03("60000");
 	}
 
 	@Test(priority = 6)
 	public void cashOutWithdrawMinTransactionLimit() throws Exception
 	{
-		MLWalletBusinessLogic.cashOutWithdrawMinTransactionLimit("10");
+		MLWalletBusinessLogic.cashOutWithdrawMinTransactionLimit_WM_TC_04("10");
 	}
 
 	@Test(priority = 7)
 	public void cashOutWithdrawBranch() throws Exception
 	{
-		MLWalletBusinessLogic.cashOutWithdrawBranch();
+		MLWalletBusinessLogic.cashOutWithdrawBranch_WM_TC_05();
 	}
 
 	@Test(priority = 8)
 	public void cashOutMaxLimit() throws Exception
 	{
-		MLWalletBusinessLogic.cashOutMaxLimit();
+		MLWalletBusinessLogic.cashOutMaxLimit_WM_TC_06();
 	}
 
 	@Test(priority = 9)
 	public void cashOutBuyerTierLevelAcc() throws Exception
 	{
-		MLWalletBusinessLogic.cashOutBuyerTierLevelAcc();
+		MLWalletBusinessLogic.cashOutBuyerTierLevelAcc_WM_TC_08();
 	}
 
 

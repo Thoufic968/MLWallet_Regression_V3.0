@@ -11,13 +11,13 @@ public class SendTransferPage {
 
     public static By objToAnyMLBranch = By.xpath("//*[@text='To any ML Branch']");
 
-    public static By objFirstname = By.xpath("//*[android.view.ViewGroup]/descendant::android.widget.EditText[@text='First Name']");
+    public static By objFirstname = By.xpath("(//*[@class='android.widget.EditText'])[1]");
 
 //    public static By objMiddleName = By.xpath("(//*[@class='android.widget.ImageView']/parent::android.view.ViewGroup/parent::android.view.ViewGroup/following-sibling::android.widget.EditText)[1]");
 
-    public static By objMiddleName = By.xpath("//*[@text='Middle Name']");
+    public static By objMiddleName = By.xpath("(//*[@class='android.widget.EditText'])[2]");
 
-    public static By objLastName = By.xpath("(//*[@class='android.widget.ImageView']/parent::android.view.ViewGroup/parent::android.view.ViewGroup/following-sibling::android.widget.EditText)[2]");
+    public static By objLastName = By.xpath("(//*[@class='android.widget.EditText'])[3]");
 
     public static By objMobileNumber = By.xpath("//*[@text='+63']/following-sibling::android.widget.EditText");
 
@@ -47,7 +47,7 @@ public class SendTransferPage {
 
     public static By objDate = By.xpath("(//*[@text='Send Money - Kwarta Padala Successful']/following-sibling::android.widget.TextView)[2]");
 
-    public static By objReferenceNumber = By.xpath("(//*[@text='Send Money - Kwarta Padala Successful']/following-sibling::android.widget.TextView)[4]");
+    public static By objReferenceNumber = By.xpath("//*[contains(@text,'Ref. No')]");
 
     public static By objReferenceNumberInTransactionDetails = By.xpath("(//*[@resource-id='Reference Number'])[2]");
     public static By objBackToHomeBtn = By.xpath("//*[@text='Back To Home']");

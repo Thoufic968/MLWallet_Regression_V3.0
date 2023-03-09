@@ -27,7 +27,7 @@ public class MLWalletCashInBank {
 
     public static By objReviewTransaction = By.xpath("//*[@text='Review Transaction']");
 
-    public static By objBankTransferCutOffTime = By.xpath("//*[@text='BANK TRANSFER CUT-OFF TIME']/following-sibling::android.widget.TextView");
+    public static By objBankTransferCutOffTime = By.xpath("//*[@text='BANK TRANSFER CUT-OFF TIME']/parent::android.view.ViewGroup/following-sibling::android.widget.TextView");
 
     public static By objReferenceNumberMsg = By.xpath("//*[@resource-id='ContentPlaceHolder1_mainMsg']");
 
