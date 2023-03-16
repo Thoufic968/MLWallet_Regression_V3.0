@@ -9,6 +9,7 @@ public class SendTransferPage {
 
     public static By objSendMoney = By.xpath("//*[@text='Send Money']");
 
+    public static By objSendWalletOptions = By.xpath("//*[@text='Send Wallet Options']");
     public static By objToAnyMLBranch = By.xpath("//*[@text='To any ML Branch']");
 
     public static By objFirstname = By.xpath("(//*[@class='android.widget.EditText'])[1]");
@@ -32,6 +33,8 @@ public class SendTransferPage {
     public static By objSelectPaymentMethod = By.xpath("//*[@text='Select Payment Method']");
 
     public static By objMLWalletBalance = By.xpath("//*[@text='ML Wallet balance']");
+
+    public static By objAvailableBalance = By.xpath("//*[@text='ML Wallet balance']/following-sibling::android.widget.TextView");
 
     public static By objAmountTxtField = By.xpath("//*[@class='android.widget.EditText']");
 
@@ -58,6 +61,9 @@ public class SendTransferPage {
 
     public static By objAddRecipient = By.xpath("//*[@text='Add Recipient']");
 
+    public static By objSavedRecipientsList = By.xpath("//*[contains(@text,'+63')]/preceding-sibling::android.widget.TextView");
+
+    public static By objNoRecentTransactionTxt = By.xpath("//*[@text='No Recent Transaction']");
     public static By objNickName = By.xpath("//*[@text='Nickname']");
 
     public static  By ObjSaveRecipient = By.xpath("//*[@text='Save Recipient']");
@@ -141,5 +147,21 @@ public class SendTransferPage {
 
     public static By objToMLWalletUser = By.xpath("//*[@text='To ML Wallet User']");
 
+    public static By objTransactionDetails = By.xpath("//*[@text='Transaction Details']");
+    public static By objReceiverName = By.xpath("(//*[@resource-id='Receiver Name'])[2]");
+    public static By objReceiverMobileNo= By.xpath("(//*[@resource-id='Receiver Mobile No.'])[2]");
+    public static By objPaymentMethod = By.xpath("(//*[@resource-id='Payment Method'])[2]");
+
+    public static By objAmount = By.xpath("(//*[@resource-id='Amount to Send'])[2]");
+
+    public static By objServiceFee = By.xpath("(//*[@resource-id='Service Fee'])[2]");
+
+    public static By objTotalAmount = By.xpath("(//*[@resource-id='Total'])[2]");
+
+    public static By objNewTransaction = By.xpath("//*[@text='New Transaction']");
+
+    public static By objAmountToSend = By.xpath("//*[@text='Amount to Send']");
+
+    public static By objKwartaPadalaDate = By.xpath("//*[@text='Kwarta Padala']/following-sibling::android.widget.TextView");
 
 }

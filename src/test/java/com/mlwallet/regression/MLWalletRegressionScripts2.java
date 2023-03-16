@@ -75,7 +75,7 @@ public class MLWalletRegressionScripts2 {
 	@Test(priority = 9)
 	public void mlWalletTransactionHistory_Scenario() throws Exception
 	{
-		MLWalletBusinessLogic.mlWallet_TransactionHistory();
+		MLWalletBusinessLogic.mlWallet_TransactionHistory_TH_TC_01();
 	}
 
 	@Test(priority = 10)

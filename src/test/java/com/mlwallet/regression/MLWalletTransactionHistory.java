@@ -23,10 +23,64 @@ public class MLWalletTransactionHistory {
 
 
     @Test(priority = 1)
-    public void mlWalletTransactionHistory_Scenario() throws Exception
+    public void mlWalletTransactionHistoryScenario__TH_TC_01() throws Exception
     {
-        MLWalletBusinessLogic.mlWallet_TransactionHistory();
+        MLWalletBusinessLogic.mlWallet_TransactionHistory_TH_TC_01();
     }
+
+    @Test(priority = 2)
+    public void billsPayTransactionHHistory_TH_TC_02() throws Exception {
+        MLWalletBusinessLogic.billsPayTransactionHHistory_TH_TC_02();
+    }
+
+    @Test(priority = 3)
+    public void buyLoadTransactionHistory_TH_TC_03() throws Exception {
+        MLWalletBusinessLogic.buyLoadTransactionHistory_TH_TC_03();
+    }
+
+    @Test(priority = 4)
+    public void sendMoneyTransactionHistory_TH_TC_04() throws Exception {
+        MLWalletBusinessLogic.sendMoneyTransactionHistory_TH_TC_04();
+    }
+
+    @Test(priority = 5)
+    public void cashInTransactionHistory_TH_TC_05() throws Exception {
+        MLWalletBusinessLogic.cashInTransactionHistory_TH_TC_05();
+    }
+
+    @Test(priority = 6)
+    public void cashOutTransactionHistory_TH_TC_06() throws Exception {
+        MLWalletBusinessLogic.cashOutTransactionHistory_TH_TC_06();
+    }
+
+    @Test(priority = 7)
+    public void receiveMoneyTransactionHistory_TH_TC_07() throws Exception {
+        MLWalletBusinessLogic.receiveMoneyTransactionHistory_TH_TC_07();
+    }
+
+    @Test(priority = 8)
+    public void balanceAdjustmentTransactionHistory_TH_TC_08() throws Exception {
+        MLWalletBusinessLogic.balanceAdjustmentTransactionHistory_TH_TC_08();
+    }
+
+    @Test(priority = 9)
+    public void mlShopTransactionHistory_TH_TC_09() throws Exception {
+        MLWalletBusinessLogic.mlShopTransactionHistory_TH_TC_09();
+    }
+
+    @Test(priority = 10)
+    public void transactionHistoryUIValidation() throws Exception {
+        MLWalletBusinessLogic.transactionHistoryUIValidation_TH_TC_10();
+    }
+
+//    @Test(priority = 11)
+//    public void transactionHistoryFirstTransactionValidation_TH_TC_13() throws Exception {
+//        MLWalletBusinessLogic.transactionHistoryFirstTransactionValidation_TH_TC_13();
+//    }
+
+
+
+
 
 
 

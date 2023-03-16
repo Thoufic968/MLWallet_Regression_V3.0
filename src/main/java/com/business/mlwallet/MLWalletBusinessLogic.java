@@ -2,6 +2,7 @@ package com.business.mlwallet;
 
 
 import com.driverInstance.CommandBase;
+import com.driverInstance.DriverInstance;
 import com.driverInstance.DriverManager;
 import com.mlwallet.pages.*;
 import com.propertyfilereader.PropertyFileReader;
@@ -14,6 +15,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
+
+import static com.utility.Utilities.*;
 // HI
 
 
@@ -24,6 +27,7 @@ public class MLWalletBusinessLogic {
 	private int retryCount;
 
 	public static SoftAssert softAssert = new SoftAssert();
+
 
 	public static PropertyFileReader prop = new PropertyFileReader(".\\properties\\testdata.properties");
 
@@ -62,19 +66,19 @@ public class MLWalletBusinessLogic {
 		logger.info("Session is quit");
 		ExtentReporter.extentLogger("", "Session is quit");
 
-		Utilities.setScreenshotSource();
+		setScreenshotSource();
 		DriverManager.getAppiumDriver().quit();
 	}
 
 	//================================ LOG IN==============================================//
 	public void mlWalletLogin(String sTier) throws Exception {
-		Utilities.explicitWaitVisible(MLWalletLoginPage.objMobileNumberTextField, 10);
-		Utilities.click(MLWalletLoginPage.objMobileNumberTextField, "Mobile Number Text Field");
-		Utilities.type(MLWalletLoginPage.objMobileNumberTextField, sTier, "Mobile Number Text Field");
-		Utilities.click(MLWalletLoginPage.objLoginBtn, "Login Button");
+		explicitWaitVisible(MLWalletLoginPage.objMobileNumberTextField, 10);
+		click(MLWalletLoginPage.objMobileNumberTextField, "Mobile Number Text Field");
+		type(MLWalletLoginPage.objMobileNumberTextField, sTier, "Mobile Number Text Field");
+		click(MLWalletLoginPage.objLoginBtn, "Login Button");
 		enterOTP(prop.getproperty("Valid_OTP"));
-		Utilities.explicitWaitVisible(MLWalletLoginPage.objAvailableBalance, 10);
-		if (Utilities.verifyElementPresent(MLWalletLoginPage.objAvailableBalance, Utilities.getTextVal(MLWalletLoginPage.objAvailableBalance, "Text"))) {
+		explicitWaitVisible(MLWalletLoginPage.objAvailableBalance, 10);
+		if (verifyElementPresent(MLWalletLoginPage.objAvailableBalance, getTextVal(MLWalletLoginPage.objAvailableBalance, "Text"))) {
 			logger.info("Application Logged In Successfully");
 		} else {
 			logger.info("Application not get Logged In Successfully");
@@ -83,14 +87,14 @@ public class MLWalletBusinessLogic {
 
 	//===================================LOG OUT=============================================================//
 	public void mlWalletLogout() throws Exception {
-		if (Utilities.verifyElementPresent(MLWalletLogOutPage.objHamburgerMenu, "Hamburger Menu")) {
-			Utilities.click(MLWalletLogOutPage.objHamburgerMenu, "Hamburger Menu");
-			Utilities.click(MLWalletLogOutPage.objLogoutBtn, Utilities.getTextVal(MLWalletLogOutPage.objLogoutBtn, "Button"));
+		if (verifyElementPresent(MLWalletLogOutPage.objHamburgerMenu, "Hamburger Menu")) {
+			click(MLWalletLogOutPage.objHamburgerMenu, "Hamburger Menu");
+			click(MLWalletLogOutPage.objLogoutBtn, getTextVal(MLWalletLogOutPage.objLogoutBtn, "Button"));
 			Thread.sleep(2000);
-			Utilities.click(MLWalletLogOutPage.objLogoutBtn, Utilities.getTextVal(MLWalletLogOutPage.objLogoutBtn, "Button"));
-			Utilities.click(MLWalletLogOutPage.objChangeNumber, Utilities.getTextVal(MLWalletLogOutPage.objChangeNumber, "Link"));
+			click(MLWalletLogOutPage.objLogoutBtn, getTextVal(MLWalletLogOutPage.objLogoutBtn, "Button"));
+			click(MLWalletLogOutPage.objChangeNumber, getTextVal(MLWalletLogOutPage.objChangeNumber, "Link"));
 		}
-		if (Utilities.verifyElementPresent(MLWalletLoginPage.objLoginBtn, Utilities.getTextVal(MLWalletLoginPage.objLoginBtn, "Link"))) {
+		if (verifyElementPresent(MLWalletLoginPage.objLoginBtn, getTextVal(MLWalletLoginPage.objLoginBtn, "Link"))) {
 			logger.info("Application Logged Out Successfully");
 		} else {
 			logger.info("Application not get Logged Out Successfully");
@@ -100,37 +104,37 @@ public class MLWalletBusinessLogic {
 //================================== Enter OTP ===================================================//
 
 	public void enterOTP(String OTP) throws Exception {
-		Utilities.explicitWaitVisible(MLWalletLoginPage.objOneTimePin, 5);
-		Utilities.verifyElementPresent(MLWalletLoginPage.objOneTimePin, Utilities.getTextVal(MLWalletLoginPage.objOneTimePin, "Page"));
-		Utilities.verifyElementPresent(MLWalletLoginPage.objOtpTextField, "OTP text Field");
+		explicitWaitVisible(MLWalletLoginPage.objOneTimePin, 5);
+		verifyElementPresent(MLWalletLoginPage.objOneTimePin, getTextVal(MLWalletLoginPage.objOneTimePin, "Page"));
+		verifyElementPresent(MLWalletLoginPage.objOtpTextField, "OTP text Field");
 		Thread.sleep(3000);
-		Utilities.type(MLWalletLoginPage.objOtpTextField, OTP, "OTP Text Field");
+		type(MLWalletLoginPage.objOtpTextField, OTP, "OTP Text Field");
 	}
 
 	public void backArrowBtn(int nNumber) throws Exception {
 		for (int i = 1; i <= nNumber; i++) {
-			Utilities.click(SendTransferPage.objBackArrow, "Back Arrow Button");
+			click(SendTransferPage.objBackArrow, "Back Arrow Button");
 			Thread.sleep(2000);
 		}
 	}
 
 
-	public void enterMLPin () throws Exception {
-		Utilities.explicitWaitVisible(MLWalletLoginPage.objMLPin,5);
-		Utilities.verifyElementPresent(MLWalletLoginPage.objMLPin,Utilities.getTextVal(MLWalletLoginPage.objMLPin,"Page"));
+	public void enterMLPin() throws Exception {
+		explicitWaitVisible(MLWalletLoginPage.objMLPin, 5);
+		verifyElementPresent(MLWalletLoginPage.objMLPin, getTextVal(MLWalletLoginPage.objMLPin, "Page"));
 		Thread.sleep(3000);
-		Utilities.click(MLWalletLoginPage.objOneBtn,Utilities.getTextVal(MLWalletLoginPage.objOneBtn,"Button"));
-		Utilities.click(MLWalletLoginPage.objOneBtn,Utilities.getTextVal(MLWalletLoginPage.objOneBtn,"Button"));
-		Utilities.click(MLWalletLoginPage.objOneBtn,Utilities.getTextVal(MLWalletLoginPage.objOneBtn,"Button"));
-		Utilities.click(MLWalletLoginPage.objOneBtn,Utilities.getTextVal(MLWalletLoginPage.objOneBtn,"Button"));
+		click(MLWalletLoginPage.objOneBtn, getTextVal(MLWalletLoginPage.objOneBtn, "Button"));
+		click(MLWalletLoginPage.objOneBtn, getTextVal(MLWalletLoginPage.objOneBtn, "Button"));
+		click(MLWalletLoginPage.objOneBtn, getTextVal(MLWalletLoginPage.objOneBtn, "Button"));
+		click(MLWalletLoginPage.objOneBtn, getTextVal(MLWalletLoginPage.objOneBtn, "Button"));
 	}
 
 	public void enableLocation_PopUp() throws Exception {
-		String loc = Utilities.getText(MLWalletLoginPage.objLocationPopup);
+		String loc = getText(MLWalletLoginPage.objLocationPopup);
 		if (loc.contains("Allow")) {
 			logger.info(loc + " Pop Up is Displayed");
 			ExtentReporter.extentLoggerPass("pop up", loc + " Pop Up is Displayed");
-			Utilities.click(MLWalletCashOutPage.objLocationPermission, "Allow Button");
+			click(MLWalletCashOutPage.objLocationPermission, "Allow Button");
 		} else {
 			logger.info(" Location Pop Up is not Displayed");
 			ExtentReporter.extentLoggerPass("pop up", "Location Pop Up is not Displayed");
@@ -140,10 +144,10 @@ public class MLWalletBusinessLogic {
 
 //========================================= LOGIN SCENARIOS======================================//
 
-	public void LogInScenarioWithValidMobNumber_Lgn_TC_01() throws Exception {
+	public void logInScenarioWithValidMobNumber_Lgn_TC_01() throws Exception {
 		ExtentReporter.HeaderChildNode("Login Scenarios With Valid Mobile Number");
 		mlWalletLogin(prop.getproperty("Branch_Verified"));
-		if(Utilities.verifyElementPresent(MLWalletLoginPage.objAvailableBalance, Utilities.getTextVal(MLWalletLoginPage.objAvailableBalance, "Text"))) {
+		if (verifyElementPresent(MLWalletLoginPage.objAvailableBalance, getTextVal(MLWalletLoginPage.objAvailableBalance, "Text"))) {
 			logger.info("Lgn_TC_01, Logged In Successfully and redirected to Dashboard");
 			ExtentReporter.extentLoggerPass("Lgn_TC_01", "Lgn_TC_01, Logged In Successfully and redirected to Dashboard");
 			System.out.println("-----------------------------------------------------------");
@@ -151,58 +155,137 @@ public class MLWalletBusinessLogic {
 		}
 	}
 
-	public void LogInScenarioWithInvalidMobNumber_Lgn_TC_02() throws Exception {
+	public void logInScenarioWithInvalidMobNumber_Lgn_TC_02() throws Exception {
 		ExtentReporter.HeaderChildNode("Login Scenarios With Invalid Mobile Number");
-		Utilities.explicitWaitVisibility(MLWalletLoginPage.objMobileNumberTextField, 10);
-		Utilities.click(MLWalletLoginPage.objMobileNumberTextField, "Mobile Number Text Field");
-		Utilities.type(MLWalletLoginPage.objMobileNumberTextField, prop.getproperty("Invalid_MobileNumber"), "Mobile Number Text Field");
-		Utilities.click(MLWalletLoginPage.objLoginBtn, "Login Button");
-		if (Utilities.verifyElementPresent(MLWalletLoginPage.objInvalidMobNumberTxt, Utilities.getTextVal(MLWalletLoginPage.objInvalidMobNumberTxt, "Error Message"))) {
+		explicitWaitVisibility(MLWalletLoginPage.objMobileNumberTextField, 10);
+		click(MLWalletLoginPage.objMobileNumberTextField, "Mobile Number Text Field");
+		type(MLWalletLoginPage.objMobileNumberTextField, prop.getproperty("Invalid_MobileNumber"), "Mobile Number Text Field");
+		click(MLWalletLoginPage.objLoginBtn, "Login Button");
+		if (verifyElementPresent(MLWalletLoginPage.objInvalidMobNumberTxt, getTextVal(MLWalletLoginPage.objInvalidMobNumberTxt, "Error Message"))) {
 			logger.info("Lgn_TC_02, Mobile number is Invalid Error Message is Displayed");
 			ExtentReporter.extentLoggerPass("Lgn_TC_02", "Lgn_TC_02, Mobile number is Invalid Error Message is Displayed");
-			Utilities.setScreenshotSource();
 			System.out.println("-----------------------------------------------------------");
 		}
 	}
 
-	public void LogInScenarioWithValidOTP() throws Exception {
+	public void logInScenarioWithValidOTP_Lgn_TC_03() throws Exception {
 		ExtentReporter.HeaderChildNode("Login Scenarios With Valid OTP");
 		mlWalletLogin(prop.getproperty("Branch_Verified"));
-		if (Utilities.verifyElementPresent(MLWalletLoginPage.objAvailableBalance, Utilities.getTextVal(MLWalletLoginPage.objAvailableBalance, "Text"))) {
+		if (verifyElementPresent(MLWalletLoginPage.objAvailableBalance, getTextVal(MLWalletLoginPage.objAvailableBalance, "Text"))) {
 			logger.info("Lgn_TC_03, Logged In Successfully and redirected to Dashboard");
 			ExtentReporter.extentLoggerPass("Lgn_TC_03", "Lgn_TC_03, Logged In Successfully and redirected to Dashboard");
-			Utilities.setScreenshotSource();
 			System.out.println("-----------------------------------------------------------");
 		}
 	}
 
 	public void LogInScenarioWithInValidOTP() throws Exception {
 		ExtentReporter.HeaderChildNode("Login Scenarios With InValid OTP");
-		Utilities.explicitWaitVisibility(MLWalletLoginPage.objMobileNumberTextField, 10);
-		Utilities.click(MLWalletLoginPage.objMobileNumberTextField, "Mobile Number Text Field");
-		Utilities.type(MLWalletLoginPage.objMobileNumberTextField, prop.getproperty("Branch_Verified"), "Mobile Number Text Field");
-		Utilities.click(MLWalletLoginPage.objLoginBtn, "Login Button");
-		Utilities.type(MLWalletLoginPage.objOtpTextField, prop.getproperty("InValid_OTP"), "OTP Text Field");
+		explicitWaitVisibility(MLWalletLoginPage.objMobileNumberTextField, 10);
+		click(MLWalletLoginPage.objMobileNumberTextField, "Mobile Number Text Field");
+		type(MLWalletLoginPage.objMobileNumberTextField, prop.getproperty("Branch_Verified"), "Mobile Number Text Field");
+		click(MLWalletLoginPage.objLoginBtn, "Login Button");
+		type(MLWalletLoginPage.objOtpTextField, prop.getproperty("InValid_OTP"), "OTP Text Field");
 	}
 
 
-//========================================CASH IN VIA BRANCH===============================================//
+//========================================== Phase 2==========================================//
+
+	public void appLaunch_Lgn_TC_05() throws Exception {
+		ExtentReporter.HeaderChildNode("App Launch");
+		if(verifyElementPresent(MLWalletLoginPage.objLoginBtn,"Login Button")){
+			logger.info("Lgn_TC_05, Application Launched Successfully");
+			ExtentReporter.extentLoggerPass("Lgn_TC_05", "Lgn_TC_05, Application Launched Successfully");
+			System.out.println("-----------------------------------------------------------");
+		}
+	}
+
+	public void loginPageUIValidation_Lgn_TC_06() throws Exception {
+		ExtentReporter.HeaderChildNode("Login Page UI Validation");
+		if(verifyElementPresent(MLWalletLoginPage.objLoginBtn,"Login Button")){
+			verifyElementPresent(MLWalletLoginPage.objMobileNumberTextField,  "Mobile Number Text Field");
+			verifyElementPresent(MLWalletLoginPage.objTroubleSigningIn,getTextVal(MLWalletLoginPage.objTroubleSigningIn,"Button"));
+			verifyElementPresent(MLWalletLoginPage.objHaveAnAccountMsg,getTextVal(MLWalletLoginPage.objHaveAnAccountMsg,"Message"));
+			verifyElementPresent(MLWalletLoginPage.objCreateOneBtn,getTextVal(MLWalletLoginPage.objCreateOneBtn,"Button"));
+			verifyElementPresent(MLWalletLoginPage.objBranchLocator,getTextVal(MLWalletLoginPage.objBranchLocator,"Button"));
+			verifyElementPresent(MLWalletLoginPage.objAppVersion,getTextVal(MLWalletLoginPage.objAppVersion,"App Version"));
+			logger.info("Lgn_TC_06, Login Page UI Validated");
+			ExtentReporter.extentLoggerPass("Lgn_TC_06", "Lgn_TC_06,  Login Page UI Validated");
+			System.out.println("-----------------------------------------------------------");
+		}
+	}
+
+	public void loginTroubleSigningIn_Lgn_TC_07() throws Exception {
+		ExtentReporter.HeaderChildNode("LogIn Trouble Signing In Validation");
+		if(verifyElementPresentAndClick(MLWalletLoginPage.objTroubleSigningIn,getTextVal(MLWalletLoginPage.objTroubleSigningIn,"Button"))){
+			verifyElementPresent(MLWalletLoginPage.objTroubleSigningPage,getTextVal(MLWalletLoginPage.objTroubleSigningPage,"Page"));
+			verifyElementPresent(MLWalletLoginPage.objMLWalletSupport,getTextVal(MLWalletLoginPage.objMLWalletSupport,"Header"));
+			logger.info("Lgn_TC_07, Navigated to Trouble Signing In Page");
+			ExtentReporter.extentLoggerPass("Lgn_TC_07", "Lgn_TC_07,  Navigated to Trouble Signing In Page");
+			System.out.println("-----------------------------------------------------------");
+		}
+	}
+
+	public void loginCreateOne_Lgn_TC_08() throws Exception {
+		ExtentReporter.HeaderChildNode("LogIn Create One");
+		if(verifyElementPresentAndClick(MLWalletLoginPage.objCreateOneBtn,getTextVal(MLWalletLoginPage.objCreateOneBtn,"Button"))){
+			verifyElementPresent(MLWalletLoginPage.objRegistrationNumber,getTextVal(MLWalletLoginPage.objRegistrationNumber,"Page"));
+			logger.info("Lgn_TC_08, Navigated to Create One Page");
+			ExtentReporter.extentLoggerPass("Lgn_TC_08", "Lgn_TC_08, Navigated to Create One Page");
+			System.out.println("-----------------------------------------------------------");
+		}
+	}
+
+	public void loginBranchLocator_Lgn_TC_09() throws Exception {
+		ExtentReporter.HeaderChildNode("LogIn Branch Locator");
+		if(Utilities.verifyElementPresentAndClick(MLWalletLoginPage.objBranchLocator,getTextVal(MLWalletLoginPage.objBranchLocator,"Button"))){
+			enableLocation_PopUp();
+			verifyElementPresent(MLWalletLoginPage.objBranchLocator,getTextVal(MLWalletLoginPage.objBranchLocator,"Page"));
+			logger.info("Lgn_TC_09, Navigated to Branch Locator Page");
+			ExtentReporter.extentLoggerPass("Lgn_TC_09", "Lgn_TC_09, Navigated to Branch Locator Page");
+			System.out.println("-----------------------------------------------------------");
+		}
+	}
+
+	public void loginOTPPageUIValidation_Lgn_TC_10() throws Exception {
+		ExtentReporter.HeaderChildNode("LogIn OTP Page UI Validation");
+		click(MLWalletLoginPage.objMobileNumberTextField, "Mobile Number Text Field");
+		type(MLWalletLoginPage.objMobileNumberTextField, prop.getproperty("Branch_Verified"), "Mobile Number Text Field");
+		click(MLWalletLoginPage.objLoginBtn, "Login Button");
+		Utilities.explicitWaitVisible(MLWalletLoginPage.objOneTimePin, 5);
+		if (Utilities.verifyElementPresent(MLWalletLoginPage.objOneTimePin, Utilities.getTextVal(MLWalletLoginPage.objOneTimePin, "Page"))) {
+			Utilities.verifyElementPresent(MLWalletLoginPage.objOtpTextField, "OTP text Field");
+			Utilities.verifyElementPresent(MLWalletLoginPage.objResendCode, Utilities.getTextVal(MLWalletCashOutPage.objResendCode, "Seconds"));
+			logger.info("Lgn_TC_10, LogIn OTP Page UI Validated");
+			ExtentReporter.extentLoggerPass("Lgn_TC_10", "Lgn_TC_10, LogIn OTP Page UI Validated");
+			System.out.println("-----------------------------------------------------------");
+		}
+	}
+
+
+
+
+
+
+
+
+
+//========================================CASH OUT / WITHDRAW===============================================//
 //======================================= Generalized methods =============================================//
 
 
 	public void cashOutSelectBank(String sBank) throws Exception {
-		if (Utilities.verifyElementPresent(MLWalletCashOutPage.objCashOut, "CashOut / Withdraw Button")) {
-			Utilities.click(MLWalletCashOutPage.objCashOut, "CashOut / Withdraw Button");
-			if (Utilities.verifyElementPresent(MLWalletCashOutPage.objToAnyBank, Utilities.getTextVal(MLWalletCashOutPage.objToAnyBank, "Button"))) {
-				Utilities.click(MLWalletCashOutPage.objToAnyBank, Utilities.getTextVal(MLWalletCashOutPage.objToAnyBank, "Button"));
-				Utilities.type(MLWalletCashOutPage.objSearchBank,sBank,"Search Bank Text Field");
-				Utilities.click(MLWalletCashOutPage.BogusBank, Utilities.getTextVal(MLWalletCashOutPage.BogusBank, "Bank"));
+		if (verifyElementPresent(MLWalletCashOutPage.objCashOut, "CashOut / Withdraw Button")) {
+			click(MLWalletCashOutPage.objCashOut, "CashOut / Withdraw Button");
+			if (verifyElementPresent(MLWalletCashOutPage.objToAnyBank, getTextVal(MLWalletCashOutPage.objToAnyBank, "Button"))) {
+				click(MLWalletCashOutPage.objToAnyBank, getTextVal(MLWalletCashOutPage.objToAnyBank, "Button"));
+				type(MLWalletCashOutPage.objSearchBank, sBank, "Search Bank Text Field");
+				click(MLWalletCashOutPage.BogusBank, getTextVal(MLWalletCashOutPage.BogusBank, "Bank"));
 			}
 		}
 	}
 
 	public void enterBankDetails(String sAccountNumber) throws Exception {
-		if (Utilities.verifyElementPresent(MLWalletCashOutPage.objBankInformation, Utilities.getTextVal(MLWalletCashOutPage.objBankInformation, "Button"))) {
+		if (verifyElementPresent(MLWalletCashOutPage.objBankInformation, Utilities.getTextVal(MLWalletCashOutPage.objBankInformation, "Button"))) {
 			Utilities.type(MLWalletCashOutPage.objAccountNumberField, sAccountNumber, "Account Number Field");
 			Utilities.type(MLWalletCashOutPage.objFirstname, prop.getproperty("First_Name"), "Account Holder First Name");
 			Utilities.type(MLWalletCashOutPage.objMiddleName, prop.getproperty("Middle_Name"), "Account Holder Middle Name");
@@ -218,7 +301,7 @@ public class MLWalletBusinessLogic {
 	public void enterAmountMLBranch(String nAmount) throws Exception {
 		if (Utilities.verifyElementPresent(MLWalletCashOutPage.objToAnyMLBranch, Utilities.getTextVal(MLWalletCashOutPage.objToAnyMLBranch, "Button"))) {
 			Utilities.click(MLWalletCashOutPage.objToAnyMLBranch, Utilities.getTextVal(MLWalletCashOutPage.objToAnyMLBranch, "Button"));
-			Utilities.verifyElementPresent(MLWalletCashOutPage.objCashOutToBranch,Utilities.getTextVal(MLWalletCashOutPage.objCashOutToBranch,"Page"));
+			Utilities.verifyElementPresent(MLWalletCashOutPage.objCashOutToBranch, Utilities.getTextVal(MLWalletCashOutPage.objCashOutToBranch, "Page"));
 			Utilities.type(MLWalletCashOutPage.objAmountField, nAmount, "Amount to Send");
 			Utilities.click(MLWalletCashOutPage.objNextBtn, Utilities.getTextVal(MLWalletCashOutPage.objNextBtn, "Button"));
 			Utilities.click(MLWalletCashOutPage.objContinueBtn, Utilities.getTextVal(MLWalletCashOutPage.objContinueBtn, "Button"));
@@ -226,7 +309,7 @@ public class MLWalletBusinessLogic {
 		}
 	}
 
-//===================================================================================================================//
+	//===================================================================================================================//
 	public void cashOutWithdrawBank_WM_TC_01(String Amount) throws Exception {
 		ExtentReporter.HeaderChildNode("Cash Out Withdraw Branch");
 		mlWalletLogin(prop.getproperty("Branch_Verified"));
@@ -240,27 +323,26 @@ public class MLWalletBusinessLogic {
 		Utilities.click(MLWalletCashOutPage.objNextBtn, Utilities.getTextVal(MLWalletCashOutPage.objNextBtn, "Button"));
 		enableLocation_PopUp();
 		enterOTP(prop.getproperty("Valid_OTP"));
-		if (Utilities.verifyElementPresent(MLWalletCashOutPage.objTransactionReceipt, Utilities.getTextVal(MLWalletCashOutPage.objTransactionReceipt, "Text"))) {
-			Utilities.verifyElementPresent(MLWalletCashOutPage.objTransactionSuccessMessage, Utilities.getTextVal(MLWalletCashOutPage.objTransactionSuccessMessage, "Message"));
-			String sTransactionSuccess = Utilities.getText(MLWalletCashOutPage.objTransactionSuccessMessage);
-			Utilities.assertionValidation(sTransactionSuccess, "Transaction Successful");
-			Utilities.verifyElementPresent(MLWalletCashOutPage.objTransactionNo, Utilities.getTextVal(MLWalletCashOutPage.objTransactionNo, "Transaction Number"));
-			String sTransactionNumber = Utilities.getText(MLWalletCashOutPage.objTransactionNo);
+		if (verifyElementPresent(MLWalletCashOutPage.objTransactionReceipt, getTextVal(MLWalletCashOutPage.objTransactionReceipt, "Text"))) {
+			verifyElementPresent(MLWalletCashOutPage.objTransactionSuccessMessage, getTextVal(MLWalletCashOutPage.objTransactionSuccessMessage, "Message"));
+			String sTransactionSuccess = getText(MLWalletCashOutPage.objTransactionSuccessMessage);
+			assertionValidation(sTransactionSuccess, "Transaction Successful");
+			verifyElementPresent(MLWalletCashOutPage.objTransactionNo,getTextVal(MLWalletCashOutPage.objTransactionNo, "Transaction Number"));
+			String sTransactionNumber = getText(MLWalletCashOutPage.objTransactionNo);
 			System.out.println(sTransactionNumber);
-			Utilities.scrollToVertical("Back To Home");
-			Utilities.click(MLWalletCashOutPage.objBackToHomeBtn, Utilities.getTextVal(MLWalletCashOutPage.objBackToHomeBtn, "Button"));
+			scrollToVertical("Back To Home");
+			click(MLWalletCashOutPage.objBackToHomeBtn, getTextVal(MLWalletCashOutPage.objBackToHomeBtn, "Button"));
 			Thread.sleep(3000);
-			Utilities.Swipe("DOWN", 2);
-			Utilities.Swipe("UP", 1);
-			Utilities.verifyElementPresent(MLWalletHomePage.objRecentTransactions, Utilities.getTextVal(MLWalletHomePage.objRecentTransactions, "Text"));
-			Utilities.click(MLWalletHomePage.objCashOutButton, Utilities.getTextVal(MLWalletHomePage.objCashOutButton, "Text"));
-			if (Utilities.verifyElementPresent(MLWalletCashOutPage.objTransactionDetails, Utilities.getTextVal(MLWalletCashOutPage.objTransactionDetails, "Page"))) {
-				String sReferenceNumberInCashOut = Utilities.getText(MLWalletCashOutPage.objReferenceNumberInCashOut);
+			Swipe("DOWN", 2);
+			Swipe("UP", 1);
+			verifyElementPresent(MLWalletHomePage.objRecentTransactions, getTextVal(MLWalletHomePage.objRecentTransactions, "Text"));
+			click(MLWalletHomePage.objCashOutButton, getTextVal(MLWalletHomePage.objCashOutButton, "Text"));
+			if (verifyElementPresent(MLWalletCashOutPage.objTransactionDetails, getTextVal(MLWalletCashOutPage.objTransactionDetails, "Page"))) {
+				String sReferenceNumberInCashOut = getText(MLWalletCashOutPage.objReferenceNumberInCashOut);
 				System.out.println(sReferenceNumberInCashOut);
-				Utilities.assertionValidation(sReferenceNumberInCashOut, sTransactionNumber);
+				assertionValidation(sReferenceNumberInCashOut, sTransactionNumber);
 				logger.info("WM_TC_01, Successfully Withdraw Money to Bank");
 				ExtentReporter.extentLoggerPass("WM_TC_01", "WM_TC_01, Successfully Withdraw Money to Bank");
-				Utilities.setScreenshotSource();
 				System.out.println("-----------------------------------------------------------");
 			}
 		}
@@ -283,8 +365,6 @@ public class MLWalletBusinessLogic {
 	}
 
 
-
-
 	public void cashOutWithdrawBankMaxAmount_WM_TC_03(String Amount) throws Exception {
 		ExtentReporter.HeaderChildNode("Cash Out Withdraw Branch Max Amount");
 		mlWalletLogin(prop.getproperty("Branch_Verified"));
@@ -301,8 +381,7 @@ public class MLWalletBusinessLogic {
 		Utilities.Swipe("UP", 2);
 		Utilities.click(MLWalletCashOutPage.objNextBtn, Utilities.getTextVal(MLWalletCashOutPage.objNextBtn, "Button"));
 		Thread.sleep(5000);
-		if(Utilities.verifyElementPresent(MLWalletCashOutPage.objBankMaxLimitTxt,Utilities.getTextVal(MLWalletCashOutPage.objBankMaxLimitTxt,"Error Message")))
-		{
+		if (Utilities.verifyElementPresent(MLWalletCashOutPage.objBankMaxLimitTxt, Utilities.getTextVal(MLWalletCashOutPage.objBankMaxLimitTxt, "Error Message"))) {
 			String sErrorMsg = Utilities.getText(MLWalletCashOutPage.objBankMaxLimitTxt);
 			String sExpectedErrorMsg = "The maximum Bank Cash-out per transaction set for your verification level is P50,000.00. Please try again.";
 			Utilities.assertionValidation(sErrorMsg, sExpectedErrorMsg);
@@ -313,17 +392,16 @@ public class MLWalletBusinessLogic {
 	}
 
 
-
 	public void cashOutWithdrawMinTransactionLimit_WM_TC_04(String Amount) throws Exception {
 		ExtentReporter.HeaderChildNode("Cash Out Withdraw Branch Max Amount");
 		mlWalletLogin(prop.getproperty("Branch_Verified"));
 		cashOutSelectBank(prop.getproperty("Valid_BankName"));
 		enterBankDetails(prop.getproperty("AccountNumber"));
-		Utilities.explicitWaitVisible(MLWalletCashOutPage.objAmountField,5);
+		Utilities.explicitWaitVisible(MLWalletCashOutPage.objAmountField, 5);
 		Utilities.type(MLWalletCashOutPage.objAmountField, Amount, "Amount to Send");
 		Utilities.click(MLWalletCashOutPage.objNextBtn, Utilities.getTextVal(MLWalletCashOutPage.objNextBtn, "Button"));
 		Thread.sleep(5000);
-		if(Utilities.verifyElementPresent(MLWalletCashOutPage.objMinimumTransactionErrorMsg,Utilities.getTextVal(MLWalletCashOutPage.objMinimumTransactionErrorMsg,"Error message"))) {
+		if (Utilities.verifyElementPresent(MLWalletCashOutPage.objMinimumTransactionErrorMsg, Utilities.getTextVal(MLWalletCashOutPage.objMinimumTransactionErrorMsg, "Error message"))) {
 			String sMinimumTransactionErrorMsg = Utilities.getText(MLWalletCashOutPage.objMinimumTransactionErrorMsg);
 			String sExpectedMsg = "The supplied amount is less than the required minimum transaction limit";
 			Utilities.assertionValidation(sMinimumTransactionErrorMsg, sExpectedMsg);
@@ -363,6 +441,7 @@ public class MLWalletBusinessLogic {
 			}
 		}
 	}
+
 	public void cashOutMaxLimit_WM_TC_06() throws Exception {
 		ExtentReporter.HeaderChildNode("Cash Out Withdraw Branch");
 		mlWalletLogin(prop.getproperty("Branch_Verified"));
@@ -370,7 +449,7 @@ public class MLWalletBusinessLogic {
 		enterAmountMLBranch("100000");
 		if (Utilities.verifyElementPresent(MLWalletCashOutPage.objMaxLimitTxt, Utilities.getTextVal(MLWalletCashOutPage.objMaxLimitTxt, "Text Message"))) {
 			String sMaxLimitTxt = Utilities.getText(MLWalletCashOutPage.objMaxLimitTxt);
-			String ExpectedTxt = "The maximum Branch Cash-out per transaction set for your verification level is P40,000.00. Please try again. ";
+			String ExpectedTxt = "The maximum Branch Cash-out per set for your verification level is P40,000.00. Please try again. ";
 			Utilities.assertionValidation(sMaxLimitTxt, ExpectedTxt);
 			logger.info("WM_TC_06, The supplied amount us less than the required minimum transaction limit. Error Message is Validated");
 			ExtentReporter.extentLoggerPass("WM_TC_06", "WM_TC_06, The supplied amount us less than the required minimum transaction limit. Error Message is Validated");
@@ -393,6 +472,7 @@ public class MLWalletBusinessLogic {
 		}
 
 	}
+
 	public void cashOutBuyerTierLevelAcc_WM_TC_08() throws Exception {
 		ExtentReporter.HeaderChildNode("Cash Out Withdraw Branch");
 		mlWalletLogin(prop.getproperty("Buyer_Tier"));
@@ -433,8 +513,8 @@ public class MLWalletBusinessLogic {
 		ExtentReporter.HeaderChildNode("Search And Select Bank");
 		mlWalletLogin(prop.getproperty("Branch_Verified"));
 		cashOutSelectBank(prop.getproperty("Valid_BankName"));
-		if(Utilities.verifyElementPresent(MLWalletCashOutPage.objBankInformation,Utilities.getTextVal(MLWalletCashOutPage.objBankInformation,"Page"))){
-			Utilities.verifyElementPresent(MLWalletCashOutPage.BogusBank,Utilities.getTextVal(MLWalletCashOutPage.BogusBank,"Bank Name"));
+		if (Utilities.verifyElementPresent(MLWalletCashOutPage.objBankInformation, Utilities.getTextVal(MLWalletCashOutPage.objBankInformation, "Page"))) {
+			Utilities.verifyElementPresent(MLWalletCashOutPage.BogusBank, Utilities.getTextVal(MLWalletCashOutPage.BogusBank, "Bank Name"));
 			logger.info("WM_TC_11, Bank Name auto-displayed after searching and selecting the particular Bank");
 			ExtentReporter.extentLoggerPass("WM_TC_11", "WM_TC_11, Bank Name auto-displayed after searching and selecting the particular Bank");
 			System.out.println("-----------------------------------------------------------");
@@ -449,10 +529,10 @@ public class MLWalletBusinessLogic {
 		Thread.sleep(3000);
 		Utilities.type(MLWalletCashOutPage.objAmountField, "", "Amount to Send");
 		Utilities.click(MLWalletCashOutPage.objNextBtn, Utilities.getTextVal(MLWalletCashOutPage.objNextBtn, "Button"));
-		if(Utilities.verifyElementPresent(MLWalletCashOutPage.objAmountRequiredErrorMsg,Utilities.getTextVal(MLWalletCashOutPage.objAmountRequiredErrorMsg,"Error Message"))){
+		if (Utilities.verifyElementPresent(MLWalletCashOutPage.objAmountRequiredErrorMsg, Utilities.getTextVal(MLWalletCashOutPage.objAmountRequiredErrorMsg, "Error Message"))) {
 			String sAmountRequiredErrorMsg = Utilities.getText(MLWalletCashOutPage.objAmountRequiredErrorMsg);
 			String sExceptedErrorMsg = "Amount is required";
-			Utilities.assertionValidation(sAmountRequiredErrorMsg,sExceptedErrorMsg);
+			Utilities.assertionValidation(sAmountRequiredErrorMsg, sExceptedErrorMsg);
 			logger.info("WM_TC_12, Amount is required - Error message is Validated");
 			ExtentReporter.extentLoggerPass("WM_TC_12", "WM_TC_12, Amount is required - Error message is Validated");
 			System.out.println("-----------------------------------------------------------");
@@ -473,13 +553,13 @@ public class MLWalletBusinessLogic {
 		enableLocation_PopUp();
 		enterOTP(prop.getproperty("Valid_OTP"));
 		Utilities.scrollToVertical("Back To Home");
-		Utilities.type(MLWalletCashOutPage.objNickName,prop.getproperty("Nick_Name"),"Nick Name Input Text Field");
-		Utilities.click(MLWalletCashOutPage.objSaveRecipientBtn,Utilities.getTextVal(MLWalletCashOutPage.objSaveRecipientBtn,"Button"));
-		Utilities.explicitWaitVisible(MLWalletCashOutPage.objToAnyBank,5);
+		Utilities.type(MLWalletCashOutPage.objNickName, prop.getproperty("Nick_Name"), "Nick Name Input Text Field");
+		Utilities.click(MLWalletCashOutPage.objSaveRecipientBtn, Utilities.getTextVal(MLWalletCashOutPage.objSaveRecipientBtn, "Button"));
+		Utilities.explicitWaitVisible(MLWalletCashOutPage.objToAnyBank, 5);
 		Utilities.verifyElementPresentAndClick(MLWalletCashOutPage.objToAnyBank, Utilities.getTextVal(MLWalletCashOutPage.objToAnyBank, "Button"));
 		Utilities.click(MLWalletCashOutPage.BogusBank, Utilities.getTextVal(MLWalletCashOutPage.BogusBank, "Bank"));
-		Utilities.verifyElementPresent(MLWalletCashOutPage.objSavedBackAccount,Utilities.getTextVal(MLWalletCashOutPage.objSavedBackAccount,"Page"));
-		if(Utilities.verifyElementPresent(MLWalletCashOutPage.objNickNameInSavedBankAcc(prop.getproperty("Nick_Name")),Utilities.getTextVal(MLWalletCashOutPage.objNickNameInSavedBankAcc(prop.getproperty("Nick_Name")),"Nick Name for Saved Bank Account"))){
+		Utilities.verifyElementPresent(MLWalletCashOutPage.objSavedBackAccount, Utilities.getTextVal(MLWalletCashOutPage.objSavedBackAccount, "Page"));
+		if (Utilities.verifyElementPresent(MLWalletCashOutPage.objNickNameInSavedBankAcc(prop.getproperty("Nick_Name")), Utilities.getTextVal(MLWalletCashOutPage.objNickNameInSavedBankAcc(prop.getproperty("Nick_Name")), "Nick Name for Saved Bank Account"))) {
 			logger.info("WM_TC_13, Saved Recipient is displayed under Saved Bank Account");
 			ExtentReporter.extentLoggerPass("WM_TC_13", "WM_TC_13, Saved Recipient is displayed under Saved Bank Account");
 			System.out.println("-----------------------------------------------------------");
@@ -501,12 +581,12 @@ public class MLWalletBusinessLogic {
 		enableLocation_PopUp();
 		enterOTP(prop.getproperty("Valid_OTP"));
 		Utilities.scrollToVertical("Back To Home");
-		Utilities.type(MLWalletCashOutPage.objNickName,prop.getproperty("Nick_Name"),"Nick Name Input Text Field");
-		Utilities.click(MLWalletCashOutPage.objSaveRecipientBtn,Utilities.getTextVal(MLWalletCashOutPage.objSaveRecipientBtn,"Button"));
-		if(Utilities.verifyElementPresent(MLWalletCashOutPage.objRecipientExistMsg,Utilities.getTextVal(MLWalletCashOutPage.objRecipientExistMsg,"Popup Message"))){
+		Utilities.type(MLWalletCashOutPage.objNickName, prop.getproperty("Nick_Name"), "Nick Name Input Text Field");
+		Utilities.click(MLWalletCashOutPage.objSaveRecipientBtn, Utilities.getTextVal(MLWalletCashOutPage.objSaveRecipientBtn, "Button"));
+		if (Utilities.verifyElementPresent(MLWalletCashOutPage.objRecipientExistMsg, Utilities.getTextVal(MLWalletCashOutPage.objRecipientExistMsg, "Popup Message"))) {
 			String sRecipientExistMsg = Utilities.getText(MLWalletCashOutPage.objRecipientExistMsg);
 			String sExpectedMsg = "Recipient already exists.";
-			Utilities.assertionValidation(sRecipientExistMsg,sExpectedMsg);
+			Utilities.assertionValidation(sRecipientExistMsg, sExpectedMsg);
 			logger.info("WM_TC_14, Recipient already exists pop up message Validated");
 			ExtentReporter.extentLoggerPass("WM_TC_14", "WM_TC_14, Recipient already exists pop up message Validated");
 			System.out.println("-----------------------------------------------------------");
@@ -517,11 +597,11 @@ public class MLWalletBusinessLogic {
 		ExtentReporter.HeaderChildNode("Cash Out Page UI Validation");
 		mlWalletLogin(prop.getproperty("Branch_Verified"));
 		Utilities.verifyElementPresentAndClick(MLWalletCashOutPage.objCashOut, "CashOut / Withdraw Button");
-		if(Utilities.verifyElementPresent(MLWalletCashOutPage.objCashOutWithdraw,Utilities.getTextVal(MLWalletCashOutPage.objCashOutWithdraw,"Page"))){
-			Utilities.verifyElementPresent(MLWalletCashOutPage.objCashOutOptions,Utilities.getTextVal(MLWalletCashOutPage.objCashOutOptions,"Header"));
-			Utilities.verifyElementPresent(MLWalletCashOutPage.objToAnyBank,Utilities.getTextVal(MLWalletCashOutPage.objToAnyBank,"Option"));
-			Utilities.verifyElementPresent(MLWalletCashOutPage.objToAnyMLBranch,Utilities.getTextVal(MLWalletCashOutPage.objToAnyMLBranch,"Option"));
-			Utilities.verifyElementPresent(MLWalletCashOutPage.objCashOutOngoingTransaction,Utilities.getTextVal(MLWalletCashOutPage.objCashOutOngoingTransaction,"Header"));
+		if (Utilities.verifyElementPresent(MLWalletCashOutPage.objCashOutWithdraw, Utilities.getTextVal(MLWalletCashOutPage.objCashOutWithdraw, "Page"))) {
+			Utilities.verifyElementPresent(MLWalletCashOutPage.objCashOutOptions, Utilities.getTextVal(MLWalletCashOutPage.objCashOutOptions, "Header"));
+			Utilities.verifyElementPresent(MLWalletCashOutPage.objToAnyBank, Utilities.getTextVal(MLWalletCashOutPage.objToAnyBank, "Option"));
+			Utilities.verifyElementPresent(MLWalletCashOutPage.objToAnyMLBranch, Utilities.getTextVal(MLWalletCashOutPage.objToAnyMLBranch, "Option"));
+			Utilities.verifyElementPresent(MLWalletCashOutPage.objCashOutOngoingTransaction, Utilities.getTextVal(MLWalletCashOutPage.objCashOutOngoingTransaction, "Header"));
 			logger.info("WM_TC_16, Cash Out Page UI Validation");
 			ExtentReporter.extentLoggerPass("WM_TC_16", "WM_TC_16, Cash Out Page UI Validation");
 			System.out.println("-----------------------------------------------------------");
@@ -531,7 +611,7 @@ public class MLWalletBusinessLogic {
 	public void cashOutWithdrawBackBtnValidation_WM_TC_17() throws Exception {
 		ExtentReporter.HeaderChildNode("Cash Out Page back arrow Button Validation");
 		cashOutUIValidation_WM_TC_16();
-		Utilities.click(MLWalletCashOutPage.cashOutBackArrowBtn,"Cash Out Page Back Arrow Button");
+		Utilities.click(MLWalletCashOutPage.cashOutBackArrowBtn, "Cash Out Page Back Arrow Button");
 		Utilities.explicitWaitVisible(MLWalletLoginPage.objAvailableBalance, 10);
 		if (Utilities.verifyElementPresent(MLWalletLoginPage.objAvailableBalance, Utilities.getTextVal(MLWalletLoginPage.objAvailableBalance, "Text"))) {
 			logger.info("WM_TC_17, Cash Out Page back arrow Button Validation");
@@ -544,13 +624,13 @@ public class MLWalletBusinessLogic {
 		ExtentReporter.HeaderChildNode("Cash Out To Branch UI Validation");
 		mlWalletLogin(prop.getproperty("Branch_Verified"));
 		Utilities.verifyElementPresentAndClick(MLWalletCashOutPage.objCashOut, "CashOut / Withdraw Button");
-		Utilities.verifyElementPresentAndClick(MLWalletCashOutPage.objToAnyMLBranch,Utilities.getTextVal(MLWalletCashOutPage.objToAnyMLBranch,"Button"));
-		if(Utilities.verifyElementPresent(MLWalletCashOutPage.objCashOutPage,Utilities.getTextVal(MLWalletCashOutPage.objCashOutPage,"Page"))){
-			Utilities.verifyElementPresent(MLWalletCashOutPage.ObjCashOutToBranch,Utilities.getTextVal(MLWalletCashOutPage.objCashOutToBranch,"Header"));
-			Utilities.verifyElementPresent(MLWalletCashOutPage.objUserName,Utilities.getTextVal(MLWalletCashOutPage.objUserName,"User Name"));
-			Utilities.verifyElementPresent(MLWalletCashOutPage.objUserMobileNumber,Utilities.getTextVal(MLWalletCashOutPage.objUserMobileNumber,"User Mobile Number"));
-			Utilities.verifyElementPresent(MLWalletCashOutPage.objMLWalletBalance,Utilities.getTextVal(MLWalletCashOutPage.objMLWalletBalance,"Balance"));
-			Utilities.verifyElementPresent(MLWalletCashOutPage.objCashOutInstructions,"Instructions Icon");
+		Utilities.verifyElementPresentAndClick(MLWalletCashOutPage.objToAnyMLBranch, Utilities.getTextVal(MLWalletCashOutPage.objToAnyMLBranch, "Button"));
+		if (Utilities.verifyElementPresent(MLWalletCashOutPage.objCashOutPage, Utilities.getTextVal(MLWalletCashOutPage.objCashOutPage, "Page"))) {
+			Utilities.verifyElementPresent(MLWalletCashOutPage.ObjCashOutToBranch, Utilities.getTextVal(MLWalletCashOutPage.objCashOutToBranch, "Header"));
+			Utilities.verifyElementPresent(MLWalletCashOutPage.objUserName, Utilities.getTextVal(MLWalletCashOutPage.objUserName, "User Name"));
+			Utilities.verifyElementPresent(MLWalletCashOutPage.objUserMobileNumber, Utilities.getTextVal(MLWalletCashOutPage.objUserMobileNumber, "User Mobile Number"));
+			Utilities.verifyElementPresent(MLWalletCashOutPage.objMLWalletBalance, Utilities.getTextVal(MLWalletCashOutPage.objMLWalletBalance, "Balance"));
+			Utilities.verifyElementPresent(MLWalletCashOutPage.objCashOutInstructions, "Instructions Icon");
 			logger.info("WM_TC_18, Cash Out to Branch Page Validation");
 			ExtentReporter.extentLoggerPass("WM_TC_18", "WM_TC_18, Cash Out to Branch Page Validation");
 			System.out.println("-----------------------------------------------------------");
@@ -560,8 +640,8 @@ public class MLWalletBusinessLogic {
 	public void cashOutToBranchBackBtnValidation_WM_TC_19() throws Exception {
 		ExtentReporter.HeaderChildNode("Cash Out To Branch Page back arrow Button Validation");
 		cashOutToBranchUIValidation_WM_TC_18();
-		Utilities.click(MLWalletCashOutPage.objCashOutToBranchBackBtn,"Cash Out Page Back Arrow Button");
-		if(Utilities.verifyElementPresent(MLWalletCashOutPage.objCashOutWithdraw,Utilities.getTextVal(MLWalletCashOutPage.objCashOutWithdraw,"Page"))){
+		Utilities.click(MLWalletCashOutPage.objCashOutToBranchBackBtn, "Cash Out Page Back Arrow Button");
+		if (Utilities.verifyElementPresent(MLWalletCashOutPage.objCashOutWithdraw, Utilities.getTextVal(MLWalletCashOutPage.objCashOutWithdraw, "Page"))) {
 			logger.info("WM_TC_19, Cash Out To Branch Page back arrow Button Validation");
 			ExtentReporter.extentLoggerPass("WM_TC_19", "WM_TC_19, Cash Out To Branch Page back arrow Button Validation");
 			System.out.println("-----------------------------------------------------------");
@@ -582,20 +662,20 @@ public class MLWalletBusinessLogic {
 		Utilities.click(MLWalletCashOutPage.objNextBtn, Utilities.getTextVal(MLWalletCashOutPage.objNextBtn, "Button"));
 		enableLocation_PopUp();
 		Utilities.explicitWaitVisible(MLWalletLoginPage.objOneTimePin, 5);
-		if(Utilities.verifyElementPresent(MLWalletLoginPage.objOneTimePin, Utilities.getTextVal(MLWalletLoginPage.objOneTimePin, "Page"))) {
+		if (Utilities.verifyElementPresent(MLWalletLoginPage.objOneTimePin, Utilities.getTextVal(MLWalletLoginPage.objOneTimePin, "Page"))) {
 			Utilities.verifyElementPresent(MLWalletLoginPage.objOtpTextField, "OTP text Field");
-			Utilities.verifyElementPresent(MLWalletCashOutPage.objResendCode,Utilities.getTextVal(MLWalletCashOutPage.objResendCode,"Seconds"));
+			Utilities.verifyElementPresent(MLWalletCashOutPage.objResendCode, Utilities.getTextVal(MLWalletCashOutPage.objResendCode, "Seconds"));
 			logger.info("WM_TC_20, One Time Pin page UI Validation");
 			ExtentReporter.extentLoggerPass("WM_TC_20", "WM_TC_20, One Time Pin page UI Validation");
 			System.out.println("-----------------------------------------------------------");
 		}
 	}
 
-	public void cashOutOTPPageBackBtnValidation_WM_TC_21() throws Exception {
+	public void cashOutOTPPageBackBtnValidation_WM_TC_21(String sAmount) throws Exception {
 		ExtentReporter.HeaderChildNode("Cash Out OTP Page Back Button Validation");
-		cashOutOTPPageUIValidation_WM_TC_20("100");
-		Utilities.click(MLWalletCashOutPage.objOneTimePinBackBtn,"OTP Back Arrow Button");
-		if (Utilities.verifyElementPresent(MLWalletCashOutPage.objReviewTransaction,Utilities.getTextVal(MLWalletCashOutPage.objReviewTransaction,"Page"))){
+		cashOutOTPPageUIValidation_WM_TC_20(sAmount);
+		Utilities.click(MLWalletCashOutPage.objOneTimePinBackBtn, "OTP Back Arrow Button");
+		if (Utilities.verifyElementPresent(MLWalletCashOutPage.objReviewTransaction, Utilities.getTextVal(MLWalletCashOutPage.objReviewTransaction, "Page"))) {
 			logger.info("WM_TC_21, OTP page back arrow Button Validation");
 			ExtentReporter.extentLoggerPass("WM_TC_21", "WM_TC_21, OTP page back arrow Button Validation");
 			System.out.println("-----------------------------------------------------------");
@@ -605,26 +685,20 @@ public class MLWalletBusinessLogic {
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //================================ Send/Transfer To any ML Branch ============================================//
 //=============================== General methods For send transfer ============================================//
 
+	public void sendMoneyToAnyMLBranch() throws Exception {
+		mlWalletLogin(prop.getproperty("Branch_Verified"));
+		click(SendTransferPage.objSendTransferBtn, getTextVal(SendTransferPage.objSendTransferBtn, "Button"));
+		verifyElementPresent(SendTransferPage.objSendMoney, getTextVal(SendTransferPage.objSendMoney, "Page"));
+		if (verifyElementPresent(SendTransferPage.objToAnyMLBranch, getTextVal(SendTransferPage.objToAnyMLBranch, "Button"))) {
+			click(SendTransferPage.objToAnyMLBranch, getTextVal(SendTransferPage.objToAnyMLBranch, "Button"));
+		}
+	}
+
 	public void enterMLBranchDetails() throws Exception {
-		Utilities.explicitWaitVisible(SendTransferPage.objKwartaPadala,5);
+		Utilities.explicitWaitVisible(SendTransferPage.objKwartaPadala, 5);
 		if (Utilities.verifyElementPresent(SendTransferPage.objKwartaPadala, Utilities.getTextVal(SendTransferPage.objKwartaPadala, "Page"))) {
 			Utilities.verifyElementPresent(SendTransferPage.objKwartaPadala, Utilities.getTextVal(SendTransferPage.objKwartaPadala, "Page"));
 			Utilities.type(SendTransferPage.objFirstname, prop.getproperty("First_Name"), "First Name Text Field");
@@ -663,59 +737,52 @@ public class MLWalletBusinessLogic {
 	}
 
 	public void addRecipient() throws Exception {
-		if (Utilities.verifyElementPresent(SendTransferPage.objSavedRecipients, Utilities.getTextVal(SendTransferPage.objSavedRecipients, "Button"))) {
-			Utilities.click(SendTransferPage.objSavedRecipients, Utilities.getTextVal(SendTransferPage.objSavedRecipients, "Button"));
-			Utilities.click(SendTransferPage.objAddRecipient, Utilities.getTextVal(SendTransferPage.objAddRecipient, "Button"));
-			Utilities.explicitWaitVisible(SendTransferPage.objAddRecipient,5);
-			Utilities.type(SendTransferPage.objFirstname, prop.getproperty("First_Name"), "First Name Text Field");
-			Utilities.type(SendTransferPage.objMiddleName, prop.getproperty("Middle_Name"), "Middle Name Text Field");
-			Utilities.click(SendTransferPage.objCheckBox, "Check Box");
-			Utilities.type(SendTransferPage.objLastName, prop.getproperty("Last_Name"), "Last Name Text Field");
-			Utilities.type(SendTransferPage.objMobileNumber, prop.getproperty("Branch_Verified"), "Last Name Text Field");
-			Utilities.type(SendTransferPage.objNickName, prop.getproperty("Nick_Name"), "Nick Name Text Field");
-			Utilities.click(SendTransferPage.ObjSaveRecipient, Utilities.getTextVal(SendTransferPage.ObjSaveRecipient, "Button"));
+		if (verifyElementPresent(SendTransferPage.objSavedRecipients, getTextVal(SendTransferPage.objSavedRecipients, "Button"))) {
+			click(SendTransferPage.objSavedRecipients, getTextVal(SendTransferPage.objSavedRecipients, "Button"));
+			click(SendTransferPage.objAddRecipient, getTextVal(SendTransferPage.objAddRecipient, "Button"));
+			explicitWaitVisible(SendTransferPage.objAddRecipient, 5);
+			type(SendTransferPage.objFirstname, prop.getproperty("First_Name"), "First Name Text Field");
+			type(SendTransferPage.objMiddleName, prop.getproperty("Middle_Name"), "Middle Name Text Field");
+			click(SendTransferPage.objCheckBox, "Check Box");
+			type(SendTransferPage.objLastName, prop.getproperty("Last_Name"), "Last Name Text Field");
+			type(SendTransferPage.objMobileNumber, prop.getproperty("Branch_Verified"), "Last Name Text Field");
+			type(SendTransferPage.objNickName, prop.getproperty("Nick_Name"), "Nick Name Text Field");
+			click(SendTransferPage.ObjSaveRecipient, getTextVal(SendTransferPage.ObjSaveRecipient, "Button"));
 		}
 	}
 
 
-
-
-//===============================================================================================================//
+	//===============================================================================================================//
 	public void sendMoneyToMLBranch_STB_TC_01() throws Exception {
 		ExtentReporter.HeaderChildNode("Send Money to any ML Branch");
-		mlWalletLogin(prop.getproperty("Branch_Verified"));
-		Utilities.click(SendTransferPage.objSendTransferBtn, Utilities.getTextVal(SendTransferPage.objSendTransferBtn, "Button"));
-		Utilities.verifyElementPresent(SendTransferPage.objSendMoney, Utilities.getTextVal(SendTransferPage.objSendMoney, "Page"));
-		if (Utilities.verifyElementPresent(SendTransferPage.objToAnyMLBranch, Utilities.getTextVal(SendTransferPage.objToAnyMLBranch, "Button"))) {
-			Utilities.click(SendTransferPage.objToAnyMLBranch, Utilities.getTextVal(SendTransferPage.objToAnyMLBranch, "Button"));
-			enterMLBranchDetails();
-			enterAmountToKwartaPadala("100");
-			enableLocation_PopUp();
-			enterMLPin();
-			if (Utilities.verifyElementPresent(SendTransferPage.objSendMoneySuccessful, Utilities.getTextVal(SendTransferPage.objSendMoneySuccessful, "Message"))) {
-				Utilities.verifyElementPresent(SendTransferPage.objPHPAmount, Utilities.getTextVal(SendTransferPage.objPHPAmount, "Amount"));
-				Utilities.verifyElementPresent(SendTransferPage.objDate, Utilities.getTextVal(SendTransferPage.objDate, "Date"));
-				Utilities.verifyElementPresent(SendTransferPage.objReferenceNumber, Utilities.getTextVal(SendTransferPage.objReferenceNumber, "Reference Number"));
-				String sReference = Utilities.getText(SendTransferPage.objReferenceNumber);
-				System.out.println(sReference);
-				String sReferenceNumber = sReference.substring(9, 20);
-				System.out.println(sReferenceNumber);
-				Utilities.Swipe("UP", 2);
-				Utilities.click(SendTransferPage.objBackToHomeBtn, Utilities.getTextVal(SendTransferPage.objBackToHomeBtn, "Button"));
-				Thread.sleep(3000);
-				Utilities.Swipe("DOWN", 2);
-				Utilities.Swipe("UP", 1);
-				Utilities.verifyElementPresent(MLWalletHomePage.objRecentTransactions, Utilities.getTextVal(MLWalletHomePage.objRecentTransactions, "Text"));
-				Utilities.verifyElementPresent(MLWalletHomePage.objRecentTransactions, Utilities.getTextVal(MLWalletHomePage.objRecentTransactions, "Text"));
-				Utilities.click(MLWalletHomePage.objKwartaPadala, Utilities.getTextVal(MLWalletHomePage.objKwartaPadala, "Text"));
-				if (Utilities.verifyElementPresent(SendTransferPage.objReferenceNumberInTransactionDetails, Utilities.getTextVal(SendTransferPage.objReferenceNumberInTransactionDetails, "Page"))) {
-					String sReferenceNumberInCashOut = Utilities.getText(SendTransferPage.objReferenceNumberInTransactionDetails);
-					System.out.println(sReferenceNumberInCashOut);
-					Utilities.assertionValidation(sReferenceNumberInCashOut, sReferenceNumber);
-					logger.info("STB_TC_01, Successfully sent Amount to ML Branch and Transaction Details is validated");
-					ExtentReporter.extentLoggerPass("STB_TC_01", "STB_TC_01, Successfully sent Amount to ML Branch and Transaction Details is validated");
-					System.out.println("-----------------------------------------------------------");
-				}
+		sendMoneyToAnyMLBranch();
+		enterMLBranchDetails();
+		enterAmountToKwartaPadala("100");
+		enableLocation_PopUp();
+		enterOTP(prop.getproperty("Valid_OTP"));
+		if (verifyElementPresent(SendTransferPage.objSendMoneySuccessful, getTextVal(SendTransferPage.objSendMoneySuccessful, "Message"))) {
+			verifyElementPresent(SendTransferPage.objPHPAmount, getTextVal(SendTransferPage.objPHPAmount, "Amount"));
+			verifyElementPresent(SendTransferPage.objDate, getTextVal(SendTransferPage.objDate, "Date"));
+			verifyElementPresent(SendTransferPage.objReferenceNumber, getTextVal(SendTransferPage.objReferenceNumber, "Reference Number"));
+			String sReference = getText(SendTransferPage.objReferenceNumber);
+			System.out.println(sReference);
+			String sReferenceNumber = sReference.substring(9, 20);
+			System.out.println(sReferenceNumber);
+			Swipe("UP", 2);
+			click(SendTransferPage.objBackToHomeBtn, getTextVal(SendTransferPage.objBackToHomeBtn, "Button"));
+			Thread.sleep(3000);
+			Swipe("DOWN", 2);
+			Swipe("UP", 1);
+			verifyElementPresent(MLWalletHomePage.objRecentTransactions, getTextVal(MLWalletHomePage.objRecentTransactions, "Text"));
+			verifyElementPresent(MLWalletHomePage.objRecentTransactions, getTextVal(MLWalletHomePage.objRecentTransactions, "Text"));
+			click(MLWalletHomePage.objKwartaPadala, getTextVal(MLWalletHomePage.objKwartaPadala, "Text"));
+			if (verifyElementPresent(SendTransferPage.objReferenceNumberInTransactionDetails, getTextVal(SendTransferPage.objReferenceNumberInTransactionDetails, "Page"))) {
+				String sReferenceNumberInCashOut = getText(SendTransferPage.objReferenceNumberInTransactionDetails);
+				System.out.println(sReferenceNumberInCashOut);
+				assertionValidation(sReferenceNumberInCashOut, sReferenceNumber);
+				logger.info("STB_TC_01, Successfully sent Amount to ML Branch and Transaction Details is validated");
+				ExtentReporter.extentLoggerPass("STB_TC_01", "STB_TC_01, Successfully sent Amount to ML Branch and Transaction Details is validated");
+				System.out.println("-----------------------------------------------------------");
 			}
 		}
 	}
@@ -850,7 +917,6 @@ public class MLWalletBusinessLogic {
 			if (Utilities.verifyElementPresent(SendTransferPage.objSelectLastName(prop.getproperty("Last_Name"), prop.getproperty("First_Name")), Utilities.getTextVal(SendTransferPage.objSelectLastName(prop.getproperty("Last_Name"), prop.getproperty("First_Name")), "Recipient"))) {
 				logger.info("STB_TC_03, The Added Recipient is displayed in Saved Recipient Page");
 				ExtentReporter.extentLoggerPass("STB_TC_03", "STB_TC_03, The Added Recipient is displayed in Saved Recipient Page");
-				Utilities.setScreenshotSource();
 				System.out.println("-----------------------------------------------------------");
 			}
 		}
@@ -872,7 +938,7 @@ public class MLWalletBusinessLogic {
 			Thread.sleep(5000);
 			enterAmountToKwartaPadala("100");
 			enableLocation_PopUp();
-			enterMLPin();
+			enterOTP(prop.getproperty("Valid_OTP"));
 			if (Utilities.verifyElementPresent(SendTransferPage.objSendMoneySuccessful, Utilities.getTextVal(SendTransferPage.objSendMoneySuccessful, "Message"))) {
 				Utilities.verifyElementPresent(SendTransferPage.objPHPAmount, Utilities.getTextVal(SendTransferPage.objPHPAmount, "Amount"));
 				Utilities.verifyElementPresent(SendTransferPage.objDate, Utilities.getTextVal(SendTransferPage.objDate, "Date"));
@@ -1024,21 +1090,222 @@ public class MLWalletBusinessLogic {
 		mlWalletLogin(prop.getproperty("Fully_verified"));
 		Utilities.click(SendTransferPage.objSendTransferBtn, Utilities.getTextVal(SendTransferPage.objSendTransferBtn, "Button"));
 		Utilities.verifyElementPresent(SendTransferPage.objSendMoney, Utilities.getTextVal(SendTransferPage.objSendMoney, "Page"));
-		if (Utilities.verifyElementPresent(SendTransferPage.objToAnyMLBranch, Utilities.getTextVal(SendTransferPage.objToAnyMLBranch, "Button"))) {
+		if (Utilities.verifyElementPresent(SendTransferPage.objToAnyMLBranch, getTextVal(SendTransferPage.objToAnyMLBranch, "Button"))) {
 			Utilities.click(SendTransferPage.objToAnyMLBranch, Utilities.getTextVal(SendTransferPage.objToAnyMLBranch, "Button"));
 			enterMLBranchDetails();
 			enterAmountToKwartaPadala("100000");
-			if (Utilities.verifyElementPresent(SendTransferPage.objMaxLimitErrorMsg, Utilities.getTextVal(SendTransferPage.objMaxLimitErrorMsg, "Error Message"))) {
+			if (Utilities.verifyElementPresent(SendTransferPage.objMaxLimitErrorMsg, getTextVal(SendTransferPage.objMaxLimitErrorMsg, "Error Message"))) {
 				String sMaximumLimitErrorMsg = Utilities.getText(SendTransferPage.objMaxLimitErrorMsg);
 				String sExpectedErrorMsg = "The maximum Send Money per transaction set for your verification level is P50,000.00. Please try again.";
 				Utilities.assertionValidation(sMaximumLimitErrorMsg, sExpectedErrorMsg);
 				logger.info("STB_TC_12, The maximum send money per transaction - Error Message is validated");
 				ExtentReporter.extentLoggerPass("STB_TC_12", "STB_TC_12, The maximum send money per transaction - Error Message is validated");
-				Utilities.setScreenshotSource();
 				System.out.println("-----------------------------------------------------------");
 			}
 		}
 	}
+
+//================================= Phase 2 ==================================================================//
+
+
+	public void sendTransferUIValidation_STB_TC_13() throws Exception {
+		ExtentReporter.HeaderChildNode("Send/Transfer page UI Validation");
+		ExtentReporter.HeaderChildNode("Send Money to any ML Branch");
+		mlWalletLogin(prop.getproperty("Branch_Verified"));
+		Utilities.click(SendTransferPage.objSendTransferBtn, Utilities.getTextVal(SendTransferPage.objSendTransferBtn, "Button"));
+		if (Utilities.verifyElementPresent(SendTransferPage.objSendMoney, getTextVal(SendTransferPage.objSendMoney, "Page"))) {
+			Utilities.verifyElementPresent(SendTransferPage.objSendWalletOptions, getTextVal(SendTransferPage.objSendWalletOptions, "Header"));
+			verifyElementPresent(SendTransferPage.objToAnyMLBranch, getTextVal(SendTransferPage.objToAnyMLBranch, "option"));
+			verifyElementPresent(SendTransferPage.objToAMLWalletUser, getTextVal(SendTransferPage.objToAMLWalletUser, "option"));
+			logger.info("STB_TC_13, Send/Transfer page UI Validated");
+			ExtentReporter.extentLoggerPass("STB_TC_13", "STB_TC_13, Send/Transfer page UI Validated");
+			System.out.println("-----------------------------------------------------------");
+		}
+	}
+
+	public void sendMoneyToBranchUIValidation_STB_TC_14() throws Exception {
+		ExtentReporter.HeaderChildNode("Send Money to ML Branch page UI Validation");
+		mlWalletLogin(prop.getproperty("Branch_Verified"));
+		click(SendTransferPage.objSendTransferBtn, getTextVal(SendTransferPage.objSendTransferBtn, "Button"));
+		verifyElementPresentAndClick(SendTransferPage.objToAnyMLBranch, getTextVal(SendTransferPage.objToAnyMLBranch, "Option"));
+		explicitWaitVisible(SendTransferPage.objKwartaPadala, 5);
+		if (verifyElementPresent(SendTransferPage.objKwartaPadala, getTextVal(SendTransferPage.objKwartaPadala, "Page"))) {
+			verifyElementPresent(SendTransferPage.objSavedRecipients, getTextVal(SendTransferPage.objSavedRecipients, "Button"));
+			verifyElementPresent(SendTransferPage.objFirstname, "First Name Input Field");
+			verifyElementPresent(SendTransferPage.objMiddleName, "Middle Name Input Field");
+			verifyElementPresent(SendTransferPage.objCheckBox, "Check box to Receiver legally does not have middle Name");
+			verifyElementPresent(SendTransferPage.objLastName, "Last Name Input Field");
+			verifyElementPresent(SendTransferPage.objMobileNumber, "Mobile Number Input Field");
+			verifyElementPresent(SendTransferPage.objNextBtn, getTextVal(SendTransferPage.objNextBtn, "Button"));
+			logger.info("STB_TC_14, Send Money to ML Branch page UI Validation");
+			ExtentReporter.extentLoggerPass("STB_TC_14", "STB_TC_14, Send Money to ML Branch page UI Validation");
+			System.out.println("-----------------------------------------------------------");
+		}
+	}
+
+	public void sendMoneyToBranchSaveRecipientPageUIValidation_STB_TC_15() throws Exception {
+		ExtentReporter.HeaderChildNode("Send Money To Branch Save Recipient Page UI Validation");
+		mlWalletLogin(prop.getproperty("Branch_Verified"));
+		click(SendTransferPage.objSendTransferBtn, getTextVal(SendTransferPage.objSendTransferBtn, "Button"));
+		verifyElementPresentAndClick(SendTransferPage.objToAnyMLBranch, getTextVal(SendTransferPage.objToAnyMLBranch, "Option"));
+		explicitWaitVisible(SendTransferPage.objKwartaPadala, 5);
+		verifyElementPresentAndClick(SendTransferPage.objSavedRecipients, getTextVal(SendTransferPage.objSavedRecipients, "Button"));
+		if (verifyElementPresent(SendTransferPage.objSavedRecipients, getTextVal(SendTransferPage.objSavedRecipients, "Page"))) {
+			verifyElementPresent(SendTransferPage.objAddRecipient, getTextVal(SendTransferPage.objAddRecipient, "Button"));
+			verifyElementPresent(SendTransferPage.objSelectRecipient, getTextVal(SendTransferPage.objSelectRecipient, "Header"));
+			verifyElementPresent(SendTransferPage.objSearchRecipient, "Search Recipient Input Field");
+			if (verifyElementDisplayed(SendTransferPage.objSavedRecipientsList)) {
+				List<WebElement> values = findElements(SendTransferPage.objSavedRecipientsList);
+				for (int i = 0; i < values.size(); i++) {
+					String savedRecipientName = values.get(i).getText();
+					logger.info("Saved Recipient : " + savedRecipientName + " is displayed");
+					ExtentReporter.extentLogger(" ", "Saved Recipient : " + savedRecipientName + " is displayed");
+				}
+			} else if (verifyElementPresent(SendTransferPage.objNoRecentTransactionTxt, getTextVal(SendTransferPage.objNoRecentTransactionTxt, "Text"))) {
+				logger.info("No Saved Recipients are present");
+			}
+			logger.info("STB_TC_15, Send Money To Branch Save Recipient Page UI Validated");
+			ExtentReporter.extentLoggerPass("STB_TC_15", "STB_TC_15, Send Money To Branch Save Recipient Page UI Validated");
+			System.out.println("-----------------------------------------------------------");
+		}
+	}
+
+
+	public void sendMoneyToBranchSuccessUIValidation_STB_TC_16() throws Exception {
+		ExtentReporter.HeaderChildNode("Send Money To Branch Success UI Validation");
+		mlWalletLogin(prop.getproperty("Branch_Verified"));
+		click(SendTransferPage.objSendTransferBtn, getTextVal(SendTransferPage.objSendTransferBtn, "Button"));
+		verifyElementPresent(SendTransferPage.objSendMoney, getTextVal(SendTransferPage.objSendMoney, "Page"));
+		if (verifyElementPresent(SendTransferPage.objToAnyMLBranch, getTextVal(SendTransferPage.objToAnyMLBranch, "Button"))) {
+			click(SendTransferPage.objToAnyMLBranch, getTextVal(SendTransferPage.objToAnyMLBranch, "Button"));
+			enterMLBranchDetails();
+			enterAmountToKwartaPadala("100");
+			enableLocation_PopUp();
+			enterOTP(prop.getproperty("Valid_OTP"));
+			if (verifyElementPresent(SendTransferPage.objSendMoneySuccessful, getTextVal(SendTransferPage.objSendMoneySuccessful, "Message"))) {
+				verifyElementPresent(SendTransferPage.objPHPAmount, getTextVal(SendTransferPage.objPHPAmount, "Amount"));
+				verifyElementPresent(SendTransferPage.objDate, getTextVal(SendTransferPage.objDate, "Date"));
+				verifyElementPresent(SendTransferPage.objReferenceNumber, getTextVal(SendTransferPage.objReferenceNumber, "Reference Number"));
+				verifyElementPresent(SendTransferPage.objTransactionDetails, getTextVal(SendTransferPage.objTransactionDetails, "Header"));
+				verifyElementPresent(SendTransferPage.objReceiverName, getTextVal(SendTransferPage.objReceiverName, "Receiver's Name"));
+				verifyElementPresent(SendTransferPage.objReceiverMobileNo, getTextVal(SendTransferPage.objReceiverMobileNo, "Receiver's Mobile Number"));
+				verifyElementPresent(SendTransferPage.objPaymentMethod, getTextVal(SendTransferPage.objPaymentMethod, "Payment Method"));
+				verifyElementPresent(SendTransferPage.objAmount, getTextVal(SendTransferPage.objAmount, "Amount"));
+				verifyElementPresent(SendTransferPage.objServiceFee, getTextVal(SendTransferPage.objServiceFee, "Service Fee"));
+				verifyElementPresent(SendTransferPage.objTotalAmount, getTextVal(SendTransferPage.objTotalAmount, "Total Amount"));
+				Swipe("UP", 1);
+				verifyElementPresent(SendTransferPage.objBackToHomeBtn, getTextVal(SendTransferPage.objBackToHomeBtn, "Button"));
+				verifyElementPresent(SendTransferPage.objNewTransaction, getTextVal(SendTransferPage.objNewTransaction, "Button"));
+				logger.info("STB_TC_16, Send Money To Branch Success page UI Validated");
+				ExtentReporter.extentLoggerPass("STB_TC_16", "STB_TC_16, Send Money To Branch Success page UI Validated");
+				System.out.println("-----------------------------------------------------------");
+			}
+		}
+	}
+
+	public void sendMoneyToBranchConfirmDetailsPageUIValidation_STB_TC_17(String nAmount) throws Exception {
+		ExtentReporter.HeaderChildNode("Send Money To Branch Confirm Details Page UI Validation");
+		sendMoneyToAnyMLBranch();
+		enterMLBranchDetails();
+		explicitWaitVisible(SendTransferPage.objKwartaPadala, 5);
+		verifyElementPresent(SendTransferPage.objKwartaPadala, getTextVal(SendTransferPage.objKwartaPadala, "Page"));
+		type(SendTransferPage.objAmountTxtField, nAmount, "Amount text Field");
+		click(SendTransferPage.objNextBtn, getTextVal(SendTransferPage.objNextBtn, "Button"));
+		verifyElementPresent(SendTransferPage.objSelectPaymentMethod, getTextVal(SendTransferPage.objSelectPaymentMethod, "Page"));
+		Thread.sleep(3000);
+		click(SendTransferPage.objMLWalletBalance, getTextVal(SendTransferPage.objMLWalletBalance, "Button"));
+		if (verifyElementPresent(SendTransferPage.objConfirmDetails, getTextVal(SendTransferPage.objConfirmDetails, "Page"))) {
+			verifyElementPresent(SendTransferPage.objTransactionDetails, getTextVal(SendTransferPage.objTransactionDetails, "Header"));
+			verifyElementPresent(SendTransferPage.objReceiverName, getTextVal(SendTransferPage.objReceiverName, "Receiver's Name"));
+			verifyElementPresent(SendTransferPage.objReceiverMobileNo, getTextVal(SendTransferPage.objReceiverMobileNo, "Receiver's Mobile Number"));
+			verifyElementPresent(SendTransferPage.objPaymentMethod, getTextVal(SendTransferPage.objPaymentMethod, "Payment Method"));
+			verifyElementPresent(SendTransferPage.objAmount, getTextVal(SendTransferPage.objAmount, "Amount"));
+			verifyElementPresent(SendTransferPage.objServiceFee, getTextVal(SendTransferPage.objServiceFee, "Service Fee"));
+			verifyElementPresent(SendTransferPage.objTotalAmount, getTextVal(SendTransferPage.objTotalAmount, "Total Amount"));
+			verifyElementPresent(SendTransferPage.objConfirmBtn, getTextVal(SendTransferPage.objConfirmBtn, "Button"));
+			logger.info("STB_TC_17, Send Money To Branch Confirm Details Page UI Validated");
+			ExtentReporter.extentLoggerPass("STB_TC_17", "STB_TC_17, Send Money To Branch Confirm Details Page UI Validated");
+			System.out.println("-----------------------------------------------------------");
+		}
+	}
+
+	public void sendMoneyToBranchSelectPaymentMethodPageUIValidation_STB_TC_18(String nAmount) throws Exception {
+		ExtentReporter.HeaderChildNode("Send Money To Branch Select Payment Method Page UI Validation");
+		sendMoneyToAnyMLBranch();
+		enterMLBranchDetails();
+		explicitWaitVisible(SendTransferPage.objKwartaPadala, 5);
+		verifyElementPresent(SendTransferPage.objKwartaPadala, getTextVal(SendTransferPage.objKwartaPadala, "Page"));
+		type(SendTransferPage.objAmountTxtField, nAmount, "Amount text Field");
+		click(SendTransferPage.objNextBtn, getTextVal(SendTransferPage.objNextBtn, "Button"));
+		if (verifyElementPresent(SendTransferPage.objSelectPaymentMethod, getTextVal(SendTransferPage.objSelectPaymentMethod, "Page"))) {
+			verifyElementPresent(SendTransferPage.objMLWalletBalance, getTextVal(SendTransferPage.objMLWalletBalance, "Button"));
+			verifyElementPresent(SendTransferPage.objAvailableBalance, getTextVal(SendTransferPage.objAvailableBalance, "Available PHP"));
+			logger.info("STB_TC_18, Send Money To Branch Select Payment Method Page UI Validated");
+			ExtentReporter.extentLoggerPass("STB_TC_18", "STB_TC_18, Send Money To Branch Select Payment Method Page UI Validated");
+			System.out.println("-----------------------------------------------------------");
+		}
+	}
+
+	public void sendMoneyToBranchEnterAmountPageUIValidation_STB_TC_19() throws Exception {
+		ExtentReporter.HeaderChildNode("Send Money To Branch Enter Amount Page UI Validation");
+		sendMoneyToAnyMLBranch();
+		enterMLBranchDetails();
+		explicitWaitVisible(SendTransferPage.objKwartaPadala, 5);
+		if (verifyElementPresent(SendTransferPage.objKwartaPadala, getTextVal(SendTransferPage.objKwartaPadala, "Page"))) {
+			verifyElementPresent(SendTransferPage.objAmountToSend, getTextVal(SendTransferPage.objAmountToSend, "Header"));
+			verifyElementPresent(SendTransferPage.objAmountTxtField, "Amount Input Field");
+			verifyElementPresent(SendTransferPage.objNextBtn, getTextVal(SendTransferPage.objNextBtn, "Button"));
+			logger.info("STB_TC_19, Send Money To Branch Enter Amount Page UI Validated");
+			ExtentReporter.extentLoggerPass("STB_TC_19", "STB_TC_19, Send Money To Branch Enter Amount Page UI Validated");
+			System.out.println("-----------------------------------------------------------");
+		}
+	}
+
+	public void kwartaPadalaTransactionDetailsUIValidation_STB_TC_20() throws Exception {
+		ExtentReporter.HeaderChildNode("Kwarta Padala Transaction Details UI Validation");
+		sendMoneyToMLBranch_STB_TC_01();
+		if (verifyElementPresent(SendTransferPage.objTransactionDetails, getTextVal(SendTransferPage.objTransactionDetails, "Header"))) {
+			verifyElementPresent(SendTransferPage.objKwartaPadala, getTextVal(SendTransferPage.objKwartaPadala, "Text"));
+			verifyElementPresent(SendTransferPage.objKwartaPadalaDate, getTextVal(SendTransferPage.objKwartaPadalaDate, "Kwarta Padala Date"));
+			verifyElementPresent(SendTransferPage.objReceiverName, getTextVal(SendTransferPage.objReceiverName, "Receiver's Name"));
+			verifyElementPresent(SendTransferPage.objReceiverMobileNo, getTextVal(SendTransferPage.objReceiverMobileNo, "Receiver's Mobile Number"));
+			verifyElementPresent(SendTransferPage.objPaymentMethod, getTextVal(SendTransferPage.objPaymentMethod, "Payment Method"));
+			verifyElementPresent(SendTransferPage.objAmount, getTextVal(SendTransferPage.objAmount, "Amount"));
+			verifyElementPresent(SendTransferPage.objServiceFee, getTextVal(SendTransferPage.objServiceFee, "Service Fee"));
+			verifyElementPresent(SendTransferPage.objTotalAmount, getTextVal(SendTransferPage.objTotalAmount, "Total Amount"));
+			logger.info("STB_TC_20, Kwarta Padala Transaction Details page UI Validated");
+			ExtentReporter.extentLoggerPass("STB_TC_20", "STB_TC_20, Kwarta Padala Transaction Details page UI Validated");
+			System.out.println("-----------------------------------------------------------");
+		}
+	}
+
+	public void sendMoneyToBranchAddRecipientPageUIValidation_STB_TC_21() throws Exception {
+		ExtentReporter.HeaderChildNode("Send Money To Branch Add Recipient Page UI Validation");
+		sendMoneyToAnyMLBranch();
+		if (verifyElementPresent(SendTransferPage.objSavedRecipients, getTextVal(SendTransferPage.objSavedRecipients, "Button"))) {
+			click(SendTransferPage.objSavedRecipients, getTextVal(SendTransferPage.objSavedRecipients, "Button"));
+			click(SendTransferPage.objAddRecipient, getTextVal(SendTransferPage.objAddRecipient, "Button"));
+			explicitWaitVisible(SendTransferPage.objAddRecipient, 5);
+			if (verifyElementPresent(SendTransferPage.objAddRecipient, getTextVal(SendTransferPage.objAddRecipient, "Page"))) {
+				verifyElementPresent(SendTransferPage.objFirstname, "First Name Text Field");
+				verifyElementPresent(SendTransferPage.objMiddleName, "Middle Name Text Field");
+				verifyElementPresent(SendTransferPage.objCheckBox, "Check Box");
+				verifyElementPresent(SendTransferPage.objLastName, "Last Name Text Field");
+				verifyElementPresent(SendTransferPage.objMobileNumber, "Last Name Text Field");
+				verifyElementPresent(SendTransferPage.objNickName, "Nick Name Text Field");
+				verifyElementPresent(SendTransferPage.ObjSaveRecipient, getTextVal(SendTransferPage.ObjSaveRecipient, "Button"));
+				logger.info("STB_TC_21, Send Money To Branch Add Recipient Page UI Validated");
+				ExtentReporter.extentLoggerPass("STB_TC_21", "STB_TC_21, Send Money To Branch Add Recipient Page UI Validated");
+				System.out.println("-----------------------------------------------------------");
+			}
+		}
+	}
+
+
+
+
+
+
 
 
 
@@ -1249,7 +1516,6 @@ public class MLWalletBusinessLogic {
 			Utilities.assertionValidation(sInsufficientBalanceErrorMsg, sExpectedErrorMsg);
 			logger.info("STW_TC_06, Insufficient Balance - Error Message is validated");
 			ExtentReporter.extentLoggerPass("STW_TC_06", "STW_TC_06, Insufficient Balance - Error Message is validated");
-			Utilities.setScreenshotSource();
 			System.out.println("-----------------------------------------------------------");
 		}
 	}
@@ -1293,7 +1559,6 @@ public class MLWalletBusinessLogic {
 				Utilities.assertionValidation(sRemovedSuccessfulMsg, sExpectedMsg);
 				logger.info("STW_TC_09, Successfully removed Favorite Contact from favorites list is validated");
 				ExtentReporter.extentLoggerPass("STW_TC_09", "STW_TC_09, Successfully removed Favorite Contact from favorites list is validated");
-				Utilities.setScreenshotSource();
 				System.out.println("-----------------------------------------------------------");
 			}
 		}
@@ -1321,78 +1586,161 @@ public class MLWalletBusinessLogic {
 		}
 	}
 
-	public void mlWallet_TransactionHistory() throws Exception {
+	public void mlWallet_TransactionHistory_TH_TC_01() throws Exception {
 		ExtentReporter.HeaderChildNode("MLWallet_TransactionHistory_Scenario");
 		mlWalletLogin(prop.getproperty("Branch_Verified"));
 		Utilities.verifyElementPresent(MLWalletTransactionHistoryPage.objRecentTransaction, Utilities.getText(MLWalletTransactionHistoryPage.objRecentTransaction));
 		Utilities.Swipe("UP", 2);
 		Utilities.click(MLWalletTransactionHistoryPage.objSeeMoreBtn, "See More Button");
-		logger.info("TH_TC_01, All Transactions are displayed");
-		ExtentReporter.extentLoggerPass("TH_TC_01", "'TH_TC_01', All Transactions are displayed");
+		if(Utilities.verifyElementPresent(MLWalletTransactionHistoryPage.objTransactionHistory,Utilities.getTextVal(MLWalletTransactionHistoryPage.objTransactionHistory,"Page"))) {
+			logger.info("TH_TC_01, All Transactions are displayed");
+			ExtentReporter.extentLoggerPass("TH_TC_01", "'TH_TC_01', All Transactions are displayed");
+			System.out.println("-----------------------------------------------------------");
+		}
+	}
 
+	public void billsPayTransactionHHistory_TH_TC_02() throws Exception {
+		ExtentReporter.HeaderChildNode("Bills Pay Transaction History");
+		mlWallet_TransactionHistory_TH_TC_01();
 		Utilities.click(MLWalletTransactionHistoryPage.objBillsPayTab, "Bills Pay");
 		mlWallet_TransactionHistory_Generic_Steps("Pay Bills", "No Recent Transaction");
 		logger.info("TH_TC_02, Bills pay Transactions are displayed");
 		ExtentReporter.extentLoggerPass("TH_TC_02", "'TH_TC_02', Bills pay Transactions are displayed");
+		System.out.println("-----------------------------------------------------------");
+	}
 
+	public void buyLoadTransactionHistory_TH_TC_03() throws Exception {
+		ExtentReporter.HeaderChildNode("Buy Eload Transaction History");
+		mlWallet_TransactionHistory_TH_TC_01();
 		Utilities.click(MLWalletTransactionHistoryPage.objeLoadTab, "eLoad");
 		mlWallet_TransactionHistory_Generic_Steps("Buy Eload", "No Recent Transaction");
 		logger.info("TH_TC_03, eLoad Transactions are displayed");
 		ExtentReporter.extentLoggerPass("TH_TC_03", "'TH_TC_03', eLoad Transactions Transactions are displayed");
+		System.out.println("-----------------------------------------------------------");
+	}
 
-
+	public void sendMoneyTransactionHistory_TH_TC_04() throws Exception {
+		ExtentReporter.HeaderChildNode("Send Money Transaction History");
+		mlWallet_TransactionHistory_TH_TC_01();
 		Utilities.click(MLWalletTransactionHistoryPage.objSendMoneyTab, "Send Money");
-		mlWallet_TransactionHistory_Generic_Steps("Wallet to Wallet", "No Recent Transaction"); // Kwarta Padala
+		mlWallet_TransactionHistory_Generic_Steps("Kwarta Padala", "No Recent Transaction"); // Kwarta Padala
 		logger.info("TH_TC_04, Send Money Transactions are displayed");
 		ExtentReporter.extentLoggerPass("TH_TC_04", "'TH_TC_04', Send Money Transactions are displayed");
+		System.out.println("-----------------------------------------------------------");
+	}
 
-
-		Utilities.scrollToFirstHorizontalScrollableElement("Receive Money");
+	public void cashInTransactionHistory_TH_TC_05() throws Exception {
+		ExtentReporter.HeaderChildNode("Cash In Transaction History");
+		mlWallet_TransactionHistory_TH_TC_01();
+		Utilities.scrollToFirstHorizontalScrollableElement("Cash In");
 		Utilities.click(MLWalletTransactionHistoryPage.objCashInTab, "Cash In");
 		Thread.sleep(3000);
 		mlWallet_TransactionHistory_Generic_Steps("Cash In", "No Recent Transaction");
 		logger.info("TH_TC_05, Cash In Transactions are displayed");
 		ExtentReporter.extentLoggerPass("TH_TC_05", "'TH_TC_05',  Cash In Transactions are displayed");
+		System.out.println("-----------------------------------------------------------");
+	}
 
-
+	public void cashOutTransactionHistory_TH_TC_06() throws Exception {
+		ExtentReporter.HeaderChildNode("Cash Out Transaction History");
+		mlWallet_TransactionHistory_TH_TC_01();
 		Utilities.click(MLWalletTransactionHistoryPage.objCashOutTab, "Cash Out");
 		Thread.sleep(3000);
 		mlWallet_TransactionHistory_Generic_Steps("Cash Out", "No Recent Transaction");
 		logger.info("TH_TC_06,  Cash Out Transactions are displayed");
 		ExtentReporter.extentLoggerPass("TH_TC_06", "'TH_TC_06', Cash Out Transactions are displayed");
+		System.out.println("-----------------------------------------------------------");
+	}
 
+	public void receiveMoneyTransactionHistory_TH_TC_07() throws Exception {
+		ExtentReporter.HeaderChildNode("Receive Money Transaction History");
+		mlWallet_TransactionHistory_TH_TC_01();
 		Utilities.click(MLWalletTransactionHistoryPage.objReceiveMoneyTab, "Receive Money");
 		Thread.sleep(3000);
 		mlWallet_TransactionHistory_Generic_Steps("Receive Money", "No Recent Transaction");
 		logger.info("TH_TC_07, Receive Money Transactions are displayed");
 		ExtentReporter.extentLoggerPass("TH_TC_07", "'TH_TC_07', Receive Money Transactions are displayed");
+		System.out.println("-----------------------------------------------------------");
+	}
 
+	public void balanceAdjustmentTransactionHistory_TH_TC_08() throws Exception {
+		ExtentReporter.HeaderChildNode("Balance Adjustment Transaction History");
+		mlWallet_TransactionHistory_TH_TC_01();
 		Utilities.scrollToFirstHorizontalScrollableElement("ML Shop");
 		Utilities.click(MLWalletTransactionHistoryPage.objBalanceAdjustmentTab, "Balance Adjustment");
 		Thread.sleep(2000);
 		mlWallet_TransactionHistory_Generic_Steps("Balance Adjustment", "No Recent Transaction");
 		logger.info("TH_TC_08, Balance Adjustment Transactions are displayed");
 		ExtentReporter.extentLoggerPass("TH_TC_08", "'TH_TC_08', Balance Adjustment Transactions are displayed");
-		Thread.sleep(2000);
+		System.out.println("-----------------------------------------------------------");
+	}
+
+	public void mlShopTransactionHistory_TH_TC_09() throws Exception {
+		ExtentReporter.HeaderChildNode("ML Shop Transaction History");
+		mlWallet_TransactionHistory_TH_TC_01();
 		Utilities.click(MLWalletTransactionHistoryPage.objMlShopTab, "ML Shop");
 		Thread.sleep(2000);
 		mlWallet_TransactionHistory_Generic_Steps("ML Shop", "No Recent Transaction");
 		logger.info("TH_TC_09, ML Shop Transactions are displayed");
 		ExtentReporter.extentLoggerPass("TH_TC_09", "'TH_TC_09', ML Shop Transactions are displayed");
+		System.out.println("-----------------------------------------------------------");	}
 
-		Utilities.click(MLWalletShopItemsPage.objBackArrowBtn, "Back Arrow Button");
-		Utilities.Swipe("down", 2);
-		if (Utilities.verifyElementPresent(MLWalletShopItemsPage.objAvailableBalance, "Available Balance")) {
-			logger.info("Navigated to Home Page");
-			ExtentReporter.extentLogger("", "Navigated to Home Page");
-		} else {
-			logger.info("Failed to Navigate Home Page");
-			ExtentReporter.extentLogger("", "Failed to Navigate Home Page");
+	public void transactionHistoryUIValidation_TH_TC_10() throws Exception {
+		ExtentReporter.HeaderChildNode("Transaction History UI Validation");
+		mlWallet_TransactionHistory_TH_TC_01();
+		if(verifyElementPresent(MLWalletTransactionHistoryPage.objAllTab,getTextVal(MLWalletTransactionHistoryPage.objAllTab,"Tab"))){
+			verifyElementPresent(MLWalletTransactionHistoryPage.objBillsPayTab,getTextVal(MLWalletTransactionHistoryPage.objBillsPayTab,"Tab"));
+			verifyElementPresent(MLWalletTransactionHistoryPage.objeLoadTab,getTextVal(MLWalletTransactionHistoryPage.objeLoadTab,"Tab"));
+			verifyElementPresent(MLWalletTransactionHistoryPage.objSendMoneyTab,getTextVal(MLWalletTransactionHistoryPage.objSendMoneyTab,"Tab"));
+			scrollToFirstHorizontalScrollableElement("Cash Out");
+			verifyElementPresent(MLWalletTransactionHistoryPage.objCashInTab,getTextVal(MLWalletTransactionHistoryPage.objCashInTab,"Tab"));
+			verifyElementPresent(MLWalletTransactionHistoryPage.objCashOutTab,getTextVal(MLWalletTransactionHistoryPage.objCashOutTab,"Tab"));
+			verifyElementPresent(MLWalletTransactionHistoryPage.objReceiveMoneyTab,getTextVal(MLWalletTransactionHistoryPage.objReceiveMoneyTab,"Tab"));
+			scrollToFirstHorizontalScrollableElement("ML Shop");
+			verifyElementPresent(MLWalletTransactionHistoryPage.objBalanceAdjustmentTab,getTextVal(MLWalletTransactionHistoryPage.objBalanceAdjustmentTab,"Tab"));
+			verifyElementPresent(MLWalletTransactionHistoryPage.objMlShopTab,getTextVal(MLWalletTransactionHistoryPage.objMlShopTab,"Tab"));
+			logger.info("TH_TC_10,Transaction History UI Validated");
+			ExtentReporter.extentLoggerPass("TH_TC_10", "'TH_TC_10',Transaction History UI Validated");
+			System.out.println("-----------------------------------------------------------");
 		}
-
-		mlWalletLogout();
-
 	}
+
+//	public void transactionHistoryFirstTransactionValidation_TH_TC_13() throws Exception {
+//		ExtentReporter.HeaderChildNode("Transaction History First Transaction Validation");
+//		mlWallet_TransactionHistory_TH_TC_01();
+//		if (verifyElementPresentAndClick(MLWalletTransactionHistoryPage.objFirstTransaction, "First Transaction")) {
+//			verifyElementPresent(MLWalletTransactionHistoryPage.objTransactionDetails, getTextVal(MLWalletTransactionHistoryPage.objTransactionDetails, "Header"));
+//			verifyElementPresent(MLWalletTransactionHistoryPage.objReferenceNumberInTransactionDetails, getTextVal(MLWalletTransactionHistoryPage.objReferenceNumberInTransactionDetails, "Page"));
+//			verifyElementPresent(MLWalletTransactionHistoryPage.objReceiverMobileNo, getTextVal(MLWalletTransactionHistoryPage.objReceiverMobileNo, "Receiver's Mobile Number"));
+//			verifyElementPresent(MLWalletTransactionHistoryPage.objTransactionType, getTextVal(MLWalletTransactionHistoryPage.objTransactionType, "Receiver's Mobile Number"));
+//
+//			verifyElementPresent(MLWalletTransactionHistoryPage.objPaymentMethod, getTextVal(MLWalletTransactionHistoryPage.objPaymentMethod, "Payment Method"));
+//			verifyElementPresent(MLWalletTransactionHistoryPage.objAmount, getTextVal(MLWalletTransactionHistoryPage.objAmount, "Amount"));
+//			verifyElementPresent(MLWalletTransactionHistoryPage.objServiceFee, getTextVal(MLWalletTransactionHistoryPage.objServiceFee, "Service Fee"));
+//			verifyElementPresent(MLWalletTransactionHistoryPage.objTotalAmount, getTextVal(MLWalletTransactionHistoryPage.objTotalAmount, "Total Amount"));
+//		}
+//	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //=================================== ML Wallet Shop Items ==========================================================//
 
@@ -1541,7 +1889,6 @@ public class MLWalletBusinessLogic {
 		selectBankAndInputAmount("100");
 		dragonPayChargesMsgValidation();
 		reviewTransactionValidation();
-		enterOTP(prop.getproperty("Valid_OTP"));
 		enableLocation_PopUp();
 		bankUserLogin(prop.getproperty("Valid_LoginId"), prop.getproperty("Valid_Password"));
 		Utilities.click(MLWalletCashInBank.objWebContinueBtn,"Continue Button");
@@ -1613,6 +1960,7 @@ public class MLWalletBusinessLogic {
 	public void searchBiller() throws Exception {
 		Utilities.verifyElementPresent(MLWalletPayBillsPage.objPayBills,Utilities.getTextVal(MLWalletPayBillsPage.objPayBills,"Icon"));
 		Utilities.click(MLWalletPayBillsPage.objPayBills,Utilities.getTextVal(MLWalletPayBillsPage.objPayBills,"Icon"));
+		waitTime(3000);
 		Utilities.type(MLWalletPayBillsPage.objSearchBiller,prop.getproperty("Biller_Name"),"Search Biller");
 		Utilities.verifyElementPresent(MLWalletPayBillsPage.objMisBillsPayBiller,Utilities.getTextVal(MLWalletPayBillsPage.objMisBillsPayBiller,"Biller"));
 		Utilities.click(MLWalletPayBillsPage.objMisBillsPayBiller,Utilities.getTextVal(MLWalletPayBillsPage.objMisBillsPayBiller,"Biller"));
@@ -1642,19 +1990,28 @@ public class MLWalletBusinessLogic {
 	}
 
 	public void addBiller() throws Exception {
-		if(Utilities.verifyElementPresent(MLWalletPayBillsPage.objSavedBiller, Utilities.getTextVal(MLWalletPayBillsPage.objSavedBiller, "Button"))) {
-			Utilities.click(MLWalletPayBillsPage.objSavedBiller, Utilities.getTextVal(MLWalletPayBillsPage.objSavedBiller, "Button"));
-			Utilities.explicitWaitVisible(MLWalletPayBillsPage.objAddBiller,5);
-			Utilities.click(MLWalletPayBillsPage.objAddBiller, Utilities.getTextVal(MLWalletPayBillsPage.objAddBiller, "Button"));
+		if(verifyElementPresent(MLWalletPayBillsPage.objSavedBiller, getTextVal(MLWalletPayBillsPage.objSavedBiller, "Button"))) {
+			click(MLWalletPayBillsPage.objSavedBiller, getTextVal(MLWalletPayBillsPage.objSavedBiller, "Button"));
+			explicitWaitVisible(MLWalletPayBillsPage.objAddBiller,5);
+			click(MLWalletPayBillsPage.objAddBiller, getTextVal(MLWalletPayBillsPage.objAddBiller, "Button"));
 			addSelectedBiller();
-			if (Utilities.verifyElementPresent(MLWalletPayBillsPage.objAddBillers, Utilities.getTextVal(MLWalletPayBillsPage.objAddBillers, "Page"))) {
-				Utilities.type(MLWalletPayBillsPage.objAddAccountNumber, prop.getproperty("AccountNumber"), "Account Number in Add Biller");
-				Utilities.type(MLWalletPayBillsPage.objAddFirstName, prop.getproperty("First_Name"), "First Name in Add Biller");
-				Utilities.type(MLWalletPayBillsPage.objAddMiddleName, prop.getproperty("Middle_Name"), "Middle Name in Add Biller");
-				Utilities.type(MLWalletPayBillsPage.objAddLastName, prop.getproperty("Last_Name"), "Last Name in Add Biller");
-				Utilities.type(MLWalletPayBillsPage.objAddNickName, prop.getproperty("Nick_Name"), "Nick Name in Add Biller");
-				Utilities.click(MLWalletPayBillsPage.objProceedBtn, Utilities.getTextVal(MLWalletPayBillsPage.objProceedBtn, "button"));
+			if (verifyElementPresent(MLWalletPayBillsPage.objAddBillers, getTextVal(MLWalletPayBillsPage.objAddBillers, "Page"))) {
+				type(MLWalletPayBillsPage.objAddAccountNumber, prop.getproperty("AccountNumber"), "Account Number in Add Biller");
+				type(MLWalletPayBillsPage.objAddFirstName, prop.getproperty("First_Name"), "First Name in Add Biller");
+				type(MLWalletPayBillsPage.objAddMiddleName, prop.getproperty("Middle_Name"), "Middle Name in Add Biller");
+				type(MLWalletPayBillsPage.objAddLastName, prop.getproperty("Last_Name"), "Last Name in Add Biller");
+				type(MLWalletPayBillsPage.objAddNickName, prop.getproperty("Nick_Name"), "Nick Name in Add Biller");
+				click(MLWalletPayBillsPage.objProceedBtn, getTextVal(MLWalletPayBillsPage.objProceedBtn, "button"));
 			}
+		}
+	}
+
+	public void selectAddedBiler() throws Exception {
+		Utilities.verifyElementPresentAndClick(MLWalletPayBillsPage.objSavedBiller,getTextVal(MLWalletPayBillsPage.objSavedBiller,"Button"));
+		if(Utilities.verifyElementPresent(MLWalletPayBillsPage.objSavedBillers,getTextVal(MLWalletPayBillsPage.objSavedBillers,"Page"))) {
+			Utilities.type(MLWalletPayBillsPage.objSearchBillerInSavedBillers, prop.getproperty("Last_Name"), "Search Recipient Text Field");
+			Utilities.verifyElementPresent(MLWalletPayBillsPage.objSelectLastName(prop.getproperty("Last_Name"), prop.getproperty("First_Name")), Utilities.getTextVal(SendTransferPage.objSelectLastName(prop.getproperty("Last_Name"), prop.getproperty("First_Name")), "Recipient"));
+			Utilities.click(MLWalletPayBillsPage.objSelectLastName(prop.getproperty("Last_Name"), prop.getproperty("First_Name")), Utilities.getTextVal(SendTransferPage.objSelectLastName(prop.getproperty("Last_Name"), prop.getproperty("First_Name")), "Recipient"));
 		}
 	}
 
@@ -1664,11 +2021,11 @@ public class MLWalletBusinessLogic {
 	public void payBillsPageValidation_PB_TC_01() throws Exception {
 		ExtentReporter.HeaderChildNode("Pay Bills Page Validation");
 		mlWalletLogin(prop.getproperty("Branch_Verified"));
-		if(Utilities.verifyElementPresent(MLWalletPayBillsPage.objPayBills,Utilities.getTextVal(MLWalletPayBillsPage.objPayBills,"Icon"))){
-			Utilities.click(MLWalletPayBillsPage.objPayBills,Utilities.getTextVal(MLWalletPayBillsPage.objPayBills,"Icon"));
-			if(Utilities.verifyElementPresent(MLWalletPayBillsPage.objSelectBiller,Utilities.getTextVal(MLWalletPayBillsPage.objSelectBiller,"Page"))){
-				Utilities.verifyElementPresent(MLWalletPayBillsPage.objRecentTransactions,Utilities.getTextVal(MLWalletPayBillsPage.objRecentTransactions,"Button"));
-				Utilities.verifyElementExist(MLWalletPayBillsPage.objBillers,Utilities.getTextVal(MLWalletPayBillsPage.objBillers,"Text"));
+		if(verifyElementPresent(MLWalletPayBillsPage.objPayBills,getTextVal(MLWalletPayBillsPage.objPayBills,"Icon"))){
+			click(MLWalletPayBillsPage.objPayBills,getTextVal(MLWalletPayBillsPage.objPayBills,"Icon"));
+			if(verifyElementPresent(MLWalletPayBillsPage.objSelectBiller,getTextVal(MLWalletPayBillsPage.objSelectBiller,"Page"))){
+				verifyElementPresent(MLWalletPayBillsPage.objRecentTransactions,getTextVal(MLWalletPayBillsPage.objRecentTransactions,"Button"));
+				verifyElementExist(MLWalletPayBillsPage.objBillers,getTextVal(MLWalletPayBillsPage.objBillers,"Text"));
 				logger.info("PB_TC_01, Pay Bills Page validated");
 				ExtentReporter.extentLoggerPass("PB_TC_01", "PB_TC_01, Pay Bills Page validated");
 				System.out.println("-----------------------------------------------------------");
@@ -1769,20 +2126,19 @@ public class MLWalletBusinessLogic {
 		mlWalletLogin(prop.getproperty("Fully_verified"));
 		searchBiller();
 		billerDetails(prop.getproperty("First_Name"),prop.getproperty("Middle_Name"),prop.getproperty("Last_Name"),"10");
-		if(Utilities.verifyElementPresent(MLWalletPayBillsPage.objConfirmDetails,Utilities.getTextVal(MLWalletPayBillsPage.objConfirmDetails,"Page"))){
-			Utilities.verifyElementPresent(MLWalletPayBillsPage.objBillerName,Utilities.getTextVal(MLWalletPayBillsPage.objBillerName,"Biller Name"));
-			Utilities.verifyElementPresent(MLWalletPayBillsPage.objAccountName,Utilities.getTextVal(MLWalletPayBillsPage.objAccountName,"Account holder Name"));
-			Utilities.verifyElementPresent(MLWalletPayBillsPage.objAccountNumber,Utilities.getTextVal(MLWalletPayBillsPage.objAccountNumber,"Account Number"));
-			Utilities.verifyElementPresent(MLWalletPayBillsPage.objPaymentMethod,Utilities.getTextVal(MLWalletPayBillsPage.objPaymentMethod,"Payment Method"));
+		if(verifyElementPresent(MLWalletPayBillsPage.objConfirmDetails,getTextVal(MLWalletPayBillsPage.objConfirmDetails,"Page"))){
+			verifyElementPresent(MLWalletPayBillsPage.objBillerName,getTextVal(MLWalletPayBillsPage.objBillerName,"Biller Name"));
+			verifyElementPresent(MLWalletPayBillsPage.objAccountName,getTextVal(MLWalletPayBillsPage.objAccountName,"Account holder Name"));
+			verifyElementPresent(MLWalletPayBillsPage.objAccountNumber,getTextVal(MLWalletPayBillsPage.objAccountNumber,"Account Number"));
+			verifyElementPresent(MLWalletPayBillsPage.objPaymentMethod,getTextVal(MLWalletPayBillsPage.objPaymentMethod,"Payment Method"));
 			logger.info("PB_TC_06, Confirm Details page displayed with transaction details is validated");
 			ExtentReporter.extentLoggerPass("PB_TC_06", "PB_TC_06, Confirm Details page displayed with transaction details is validated");
 			System.out.println("-----------------------------------------------------------");
 		}
 	}
 
-	public void payBillsWithValidInputs() throws Exception {
+	public void payBillsWithValidInputs_PB_TC_07() throws Exception {
 		ExtentReporter.HeaderChildNode("Pay Bills With Valid Inputs");
-		ExtentReporter.HeaderChildNode("Biller Information Input");
 		mlWalletLogin(prop.getproperty("Fully_verified"));
 		searchBiller();
 		billerDetails(prop.getproperty("First_Name"), prop.getproperty("Middle_Name"), prop.getproperty("Last_Name"), "10");
@@ -1791,9 +2147,76 @@ public class MLWalletBusinessLogic {
 			Utilities.click(MLWalletPayBillsPage.objPayBtn,Utilities.getTextVal(MLWalletPayBillsPage.objPayBtn,"Button"));
 		}
 		enableLocation_PopUp();
-		enterOTP(prop.getproperty("Valid_OTP"));
+		enterMLPin();
+		if(verifyElementPresent(MLWalletPayBillsPage.objSuccessPillPaymentMsg,getTextVal(MLWalletPayBillsPage.objSuccessPillPaymentMsg,"Message"))) {
+			verifyElementPresent(MLWalletPayBillsPage.objAmountPaid, getTextVal(MLWalletPayBillsPage.objAmountPaid, "Amount"));
+			verifyElementPresent(MLWalletPayBillsPage.objPaidDate, getTextVal(MLWalletPayBillsPage.objPaidDate, "Date"));
+			verifyElementPresent(MLWalletPayBillsPage.objTransactionDetails, getTextVal(MLWalletPayBillsPage.objTransactionDetails, "Header"));
+			verifyElementPresent(MLWalletPayBillsPage.objTransactionNumber, getTextVal(MLWalletPayBillsPage.objTransactionNumber, "Transaction Number"));
+			String sTransactionNumber = getText(MLWalletPayBillsPage.objTransactionNumber);
+			verifyElementPresent(MLWalletPayBillsPage.objBillerName, getTextVal(MLWalletPayBillsPage.objBillerName, "Biller Name"));
+			verifyElementPresent(MLWalletPayBillsPage.objAccountName, getTextVal(MLWalletPayBillsPage.objAccountName, "Account Name"));
+			verifyElementPresent(MLWalletPayBillsPage.objPaymentMethod, getTextVal(MLWalletPayBillsPage.objPaymentMethod, "Payment Method"));
+			verifyElementPresent(MLWalletPayBillsPage.objAmountToPay, getTextVal(MLWalletPayBillsPage.objAmountToPay, "Amount"));
+			verifyElementPresent(MLWalletPayBillsPage.objServiceFee, getTextVal(MLWalletPayBillsPage.objServiceFee, "Service Fee"));
+			verifyElementPresent(MLWalletPayBillsPage.objTotalAmount, getTextVal(MLWalletPayBillsPage.objTotalAmount, "Total Amount"));
+			verifyElementPresentAndClick(MLWalletPayBillsPage.objBackToHomeBtn, getTextVal(MLWalletPayBillsPage.objBackToHomeBtn, "Button"));
+			waitTime(3000);
+			Swipe("DOWN", 2);
+			Swipe("UP", 1);
+			verifyElementPresent(MLWalletHomePage.objRecentTransactions, getTextVal(MLWalletHomePage.objRecentTransactions, "Text"));
+			click(MLWalletHomePage.objPayBills, getTextVal(MLWalletHomePage.objPayBills, "Text"));
+			if (verifyElementPresent(MLWalletCashOutPage.objTransactionDetails, getTextVal(MLWalletCashOutPage.objTransactionDetails, "Page"))) {
+				String sReferenceNumberInCashOut = getText(MLWalletCashOutPage.objReferenceNumberInCashOut);
+				System.out.println(sReferenceNumberInCashOut);
+				assertionValidation(sReferenceNumberInCashOut, sTransactionNumber);
+				logger.info("PB_TC_07, Bills Payment Successful and validated with Recent Transaction");
+				ExtentReporter.extentLoggerPass("PB_TC_07", "PB_TC_07, Bills Payment Successful and validated with Recent Transaction");
+				System.out.println("-----------------------------------------------------------");
+			}
+		}
 	}
 
+	public void payBillsInRecentTransactions_PB_TC_08() throws Exception {
+		ExtentReporter.HeaderChildNode("Pay Bills In Recent Transactions");
+		mlWalletLogin(prop.getproperty("Fully_verified"));
+		Swipe("UP", 1);
+		verifyElementPresent(MLWalletHomePage.objRecentTransactions, getTextVal(MLWalletHomePage.objRecentTransactions, "Text"));
+		click(MLWalletHomePage.objPayBills, getTextVal(MLWalletHomePage.objPayBills, "Text"));
+		if(verifyElementPresent(MLWalletPayBillsPage.objTransactionDetails,getTextVal(MLWalletPayBillsPage.objTransactionDetails,"Page"))){
+			verifyElementPresent(MLWalletPayBillsPage.objReferenceNumber,getTextVal(MLWalletPayBillsPage.objReferenceNumber,"Reference Number"));
+			verifyElementPresent(MLWalletPayBillsPage.objReceiverName,getTextVal(MLWalletPayBillsPage.objReceiverName,"Receiver Name"));
+			verifyElementPresent(MLWalletPayBillsPage.objBillerName, getTextVal(MLWalletPayBillsPage.objBillerName, "Biller Name"));
+			verifyElementPresent(MLWalletPayBillsPage.objReceiverMobNo, getTextVal(MLWalletPayBillsPage.objReceiverMobNo, "Receiver Mobile Number"));
+			verifyElementPresent(MLWalletPayBillsPage.objPaymentMethod, getTextVal(MLWalletPayBillsPage.objPaymentMethod, "Payment Method"));
+			verifyElementPresent(MLWalletPayBillsPage.objAmountToSend, getTextVal(MLWalletPayBillsPage.objAmountToSend, "Amount"));
+			verifyElementPresent(MLWalletPayBillsPage.objServiceFee, getTextVal(MLWalletPayBillsPage.objServiceFee, "Service Fee"));
+			verifyElementPresent(MLWalletPayBillsPage.objTotalAmount, getTextVal(MLWalletPayBillsPage.objTotalAmount, "Total Amount"));
+			logger.info("PB_TC_08, Pay Bills In Recent Transactions Validated");
+			ExtentReporter.extentLoggerPass("PB_TC_08", "PB_TC_08, Pay Bills In Recent Transactions Validated");
+			System.out.println("-----------------------------------------------------------");
+		}
+	}
+
+	public void payBillsInsufficientBalance_PB_TC_09() throws Exception {
+		ExtentReporter.HeaderChildNode("Pay Bills Insufficient Balance");
+		mlWalletLogin(prop.getproperty("Fully_verified"));
+		searchBiller();
+		billerDetails(prop.getproperty("First_Name"), prop.getproperty("Middle_Name"), prop.getproperty("Last_Name"), "39000");
+		if(Utilities.verifyElementPresent(MLWalletPayBillsPage.objConfirmDetails, Utilities.getTextVal(MLWalletPayBillsPage.objConfirmDetails, "Page"))) {
+			Utilities.Swipe("UP",1);
+			Utilities.click(MLWalletPayBillsPage.objPayBtn,Utilities.getTextVal(MLWalletPayBillsPage.objPayBtn,"Button"));
+			Utilities.explicitWaitVisible(SendTransferPage.objInsufficientAmountMsg,5);
+			if (Utilities.verifyElementPresent(SendTransferPage.objInsufficientAmountMsg, Utilities.getTextVal(SendTransferPage.objInsufficientAmountMsg, "Error Message"))) {
+				String sInsufficientBalanceErrorMsg = Utilities.getText(SendTransferPage.objInsufficientAmountMsg);
+				String sExpectedErrorMsg = "There is insufficient balance to proceed with this transaction. Please try again.";
+				Utilities.assertionValidation(sInsufficientBalanceErrorMsg, sExpectedErrorMsg);
+				logger.info("PB_TC_09, Insufficient Balance - Error Message is validated");
+				ExtentReporter.extentLoggerPass("PB_TC_09", "PB_TC_09, Insufficient Balance - Error Message is validated");
+				System.out.println("-----------------------------------------------------------");
+			}
+		}
+	}
 
 
 	public void billingInformationInvalidInput_PB_TC_10() throws Exception {
@@ -1848,25 +2271,127 @@ public class MLWalletBusinessLogic {
 		System.out.println("-----------------------------------------------------------");
 	}
 
-	public void addBillerToPayBills() throws Exception {
+	public void addBillerToPayBills_PB_TC_12() throws Exception {
 		ExtentReporter.HeaderChildNode("Add Biller To Pay Bills");
 		mlWalletLogin(prop.getproperty("Branch_Verified"));
 		Utilities.verifyElementPresent(MLWalletPayBillsPage.objPayBills,Utilities.getTextVal(MLWalletPayBillsPage.objPayBills,"Icon"));
 		Utilities.click(MLWalletPayBillsPage.objPayBills,Utilities.getTextVal(MLWalletPayBillsPage.objPayBills,"Icon"));
 		addBiller();
+		click(MLWalletPayBillsPage.objOKBtn,getTextVal(MLWalletPayBillsPage.objOKBtn,"Button"));
+		type(MLWalletPayBillsPage.objSearchSavedBiller, prop.getproperty("Last_Name"), "Search Biller Text Field");
+		if (verifyElementPresent(MLWalletPayBillsPage.objSelectBillerInnSavedBiller(prop.getproperty("Last_Name")), getTextVal(MLWalletPayBillsPage.objSelectBillerInnSavedBiller(prop.getproperty("Last_Name")), "Recipient"))) {
+			logger.info("PB_TC_12, The Added Biller is displayed in Saved Biller Page");
+			ExtentReporter.extentLoggerPass("PB_TC_12", "PB_TC_12, The Added Biller is displayed in Saved Biller Page");
+			System.out.println("-----------------------------------------------------------");
+		}
 	}
+//
+//	public void addBillerInvalidInputs_PB_TC_13() throws Exception {
+//		ExtentReporter.HeaderChildNode("Add Biller Invalid Inputs");
+//		mlWalletLogin(prop.getproperty("Branch_Verified"));
+//		Utilities.verifyElementPresent(MLWalletPayBillsPage.objPayBills,Utilities.getTextVal(MLWalletPayBillsPage.objPayBills,"Icon"));
+//		Utilities.click(MLWalletPayBillsPage.objPayBills,Utilities.getTextVal(MLWalletPayBillsPage.objPayBills,"Icon"));
+//		Utilities.click(MLWalletPayBillsPage.objSavedBiller, Utilities.getTextVal(MLWalletPayBillsPage.objSavedBiller, "Button"));
+//		Utilities.explicitWaitVisible(MLWalletPayBillsPage.objAddBiller,5);
+//		Utilities.click(MLWalletPayBillsPage.objAddBiller, Utilities.getTextVal(MLWalletPayBillsPage.objAddBiller, "Button"));
+//		addSelectedBiller();
+//
+//		type(MLWalletPayBillsPage.objAddAccountNumber,"ABC","Account Number Input Field");
+//		click(MLWalletPayBillsPage.objProceedBtn,getTextVal(MLWalletPayBillsPage.objProceedBtn,"Button"));
+//		if(Utilities.verifyElementPresent(MLWalletPayBillsPage.objAddAccountNumber,getTextVal(MLWalletPayBillsPage.objAddAccountNumber,"Error Message"))){
+//			String sAccountNumberRequiredErrorMsg = Utilities.getText(MLWalletPayBillsPage.objAccountNumberRequiredMsg);
+//			String sExceptedAccountNumberRequiredErrorMsg = "Account Number is required";
+//			Utilities.assertionValidation(sAccountNumberRequiredErrorMsg,sExceptedAccountNumberRequiredErrorMsg);
+//		}
+//
+//		click(MLWalletPayBillsPage.objProceedBtn,getTextVal(MLWalletPayBillsPage.objProceedBtn,"Button"));
+//		type(MLWalletPayBillsPage.objAddAccountNumber,prop.getproperty("AccountNumber"),"Account Number Input Field");
+//		if(Utilities.verifyElementPresent(MLWalletPayBillsPage.objFirstNameRequiredMsg,Utilities.getTextVal(MLWalletPayBillsPage.objFirstNameRequiredMsg,"Error Message"))){
+//			String sFirstNameRequiredErrorMsg = Utilities.getText(MLWalletPayBillsPage.objFirstNameRequiredMsg);
+//			String sExceptedFirstNameRequiredErrorMsg = "First name is required";
+//			Utilities.assertionValidation(sFirstNameRequiredErrorMsg,sExceptedFirstNameRequiredErrorMsg);
+//		}
+//
+//		click(MLWalletPayBillsPage.objProceedBtn,getTextVal(MLWalletPayBillsPage.objProceedBtn,"Button"));
+//		type(MLWalletPayBillsPage.objAddFirstName,prop.getproperty("Invalid_First_Name"),"First Name Input Field");
+//		if(Utilities.verifyElementPresent(MLWalletPayBillsPage.objLastNameRequiredMsg,Utilities.getTextVal(MLWalletPayBillsPage.objLastNameRequiredMsg,"Error Message"))){
+//			String sLastNameRequiredErrorMsg = Utilities.getText(MLWalletPayBillsPage.objLastNameRequiredMsg);
+//			String sExceptedLastNameRequiredErrorMsg = "Last name is required";
+//			Utilities.assertionValidation(sLastNameRequiredErrorMsg,sExceptedLastNameRequiredErrorMsg);
+//		}
+//
+//		click(MLWalletPayBillsPage.objProceedBtn,getTextVal(MLWalletPayBillsPage.objProceedBtn,"Button"));
+//		type(MLWalletPayBillsPage.objAddLastName,prop.getproperty("Invalid_Last_Name"),"Last Name Input Field");
+////		billerDetails(prop.getproperty("Invalid_First_Name"),prop.getproperty("Invalid_Middle_Name"),prop.getproperty("Invalid_Last_Name"),"0.99");
+//
+//
+//		if(Utilities.verifyElementPresent(MLWalletPayBillsPage.objInvalidFirstNameMsg,Utilities.getTextVal(MLWalletPayBillsPage.objInvalidFirstNameMsg,"Error Message"))){
+//			String sInvalidFirstNameErrorMsg = Utilities.getText(MLWalletPayBillsPage.objInvalidFirstNameMsg);
+//			String sExceptedFirstNameErrorMsg = "First name must only contain letters and spaces";
+//			Utilities.assertionValidation(sInvalidFirstNameErrorMsg,sExceptedFirstNameErrorMsg);
+//		}
+//		if(Utilities.verifyElementPresent(MLWalletPayBillsPage.objInvalidSecondNameMsg,Utilities.getTextVal(MLWalletPayBillsPage.objInvalidSecondNameMsg,"Error Message"))){
+//			String sInvalidSecondNameErrorMsg = Utilities.getText(MLWalletPayBillsPage.objInvalidSecondNameMsg);
+//			String sExceptedSecondNameErrorMsg = "Middle name must only contain letters and spaces";
+//			Utilities.assertionValidation(sInvalidSecondNameErrorMsg,sExceptedSecondNameErrorMsg);
+//		}
+//		if(Utilities.verifyElementPresent(MLWalletPayBillsPage.objInvalidLastName,Utilities.getTextVal(MLWalletPayBillsPage.objInvalidLastName,"Error Message"))){
+//			String sInvalidThirdNameErrorMsg = Utilities.getText(MLWalletPayBillsPage.objInvalidLastName);
+//			String sExceptedThirdNameErrorMsg = "Last name must only contain letters and spaces";
+//			Utilities.assertionValidation(sInvalidThirdNameErrorMsg,sExceptedThirdNameErrorMsg);
+//		}
 
-	public void addBillerInvalidInputs() throws Exception {
-		ExtentReporter.HeaderChildNode("Add Biller Invalid Inputs");
+	public void editAddedBillerToPayBills_PB_TC_14() throws Exception {
+		ExtentReporter.HeaderChildNode("Edit Added Biller to Pay bIlls");
 		mlWalletLogin(prop.getproperty("Branch_Verified"));
-		Utilities.verifyElementPresent(MLWalletPayBillsPage.objPayBills,Utilities.getTextVal(MLWalletPayBillsPage.objPayBills,"Icon"));
-		Utilities.click(MLWalletPayBillsPage.objPayBills,Utilities.getTextVal(MLWalletPayBillsPage.objPayBills,"Icon"));
-		Utilities.click(MLWalletPayBillsPage.objSavedBiller, Utilities.getTextVal(MLWalletPayBillsPage.objSavedBiller, "Button"));
-		Utilities.explicitWaitVisible(MLWalletPayBillsPage.objAddBiller,5);
-		Utilities.click(MLWalletPayBillsPage.objAddBiller, Utilities.getTextVal(MLWalletPayBillsPage.objAddBiller, "Button"));
-		addSelectedBiller();
+		verifyElementPresent(MLWalletPayBillsPage.objPayBills, getTextVal(MLWalletPayBillsPage.objPayBills, "Icon"));
+		click(MLWalletPayBillsPage.objPayBills, getTextVal(MLWalletPayBillsPage.objPayBills, "Icon"));
+		selectAddedBiler();
+		click(MLWalletPayBillsPage.objEditBtn,getTextVal(MLWalletPayBillsPage.objEditBtn,"Button"));
+
+		clearField(MLWalletPayBillsPage.objEditRecipientLastName,"Last Name Input Field");
+		type(MLWalletPayBillsPage.objEditRecipientLastName, prop.getproperty("Edited_Last_name"), "Last Name Text Field");
+		click(MLWalletPayBillsPage.ObjSaveBtn, getTextVal(MLWalletPayBillsPage.ObjSaveBtn, "Button"));
+		click(MLWalletPayBillsPage.objOKBtn,getTextVal(MLWalletPayBillsPage.objOKBtn,"Button"));
+		type(MLWalletPayBillsPage.objSearchSavedBiller, prop.getproperty("Edited_Last_name"), "Search Recipient Text Field");
+		if (verifyElementPresent(MLWalletPayBillsPage.objSelectLastName(prop.getproperty("Edited_Last_name"), prop.getproperty("First_Name")), Utilities.getTextVal(SendTransferPage.objSelectLastName(prop.getproperty("Edited_Last_name"), prop.getproperty("First_Name")), "Recipient"))) {
+			logger.info("PB_TC_14, Successfully edited the Added Biller");
+			ExtentReporter.extentLoggerPass("PB_TC_14", "PB_TC_14, Successfully edited the Added Biller");
+			System.out.println("-----------------------------------------------------------");
+		}
 
 	}
+
+	public void deleteAddedBillerPayBills_PB_TC_15() throws Exception {
+		ExtentReporter.HeaderChildNode("Delete Added Biller Pay Bills");
+		mlWalletLogin(prop.getproperty("Branch_Verified"));
+		verifyElementPresent(MLWalletPayBillsPage.objPayBills, getTextVal(MLWalletPayBillsPage.objPayBills, "Icon"));
+		click(MLWalletPayBillsPage.objPayBills, getTextVal(MLWalletPayBillsPage.objPayBills, "Icon"));
+		selectAddedBiler();
+		click(MLWalletPayBillsPage.objRemoveBtn,getTextVal(MLWalletPayBillsPage.objRemoveBtn,"Button"));
+		if(verifyElementPresent(MLWalletPayBillsPage.objConfirmPopup,getTextVal(MLWalletPayBillsPage.objConfirmPopup,"Pop up"))){
+			verifyElementPresentAndClick(MLWalletPayBillsPage.objConfirmBtn,getTextVal(MLWalletPayBillsPage.objConfirmBtn,"Button"));
+		}
+		if(verifyElementPresent(MLWalletPayBillsPage.objSavedBillers,getTextVal(MLWalletPayBillsPage.objSavedBillers,"Page"))){
+			type(MLWalletPayBillsPage.objSearchBillerInSavedBillers,prop.getproperty("Edited_Last_name"),"Search saved biller input field");
+			if (verifyElementNotPresent(MLWalletPayBillsPage.objSelectLastName(prop.getproperty("Edited_Last_name"), prop.getproperty("First_Name")),5)){
+				logger.info("PB_TC_15, Successfully deleted the Added Biller");
+				ExtentReporter.extentLoggerPass("PB_TC_15", "PB_TC_15, Successfully deleted the Added Biller");
+				System.out.println("-----------------------------------------------------------");
+			}
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

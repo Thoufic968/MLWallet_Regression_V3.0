@@ -120,8 +120,13 @@ public class MLWalletCashOutWithdrawScripts {
     }
 
     @Test(priority = 18)
+    public void cashOutOTPPageUIValidation_WM_TC_20() throws Exception {
+        MLWalletBusinessLogic.cashOutOTPPageUIValidation_WM_TC_20("100");
+    }
+
+    @Test(priority = 19)
     public void cashOutOTPPageBackBtnValidation() throws Exception {
-        MLWalletBusinessLogic.cashOutOTPPageBackBtnValidation_WM_TC_21();
+        MLWalletBusinessLogic.cashOutOTPPageBackBtnValidation_WM_TC_21("100");
     }
 
 

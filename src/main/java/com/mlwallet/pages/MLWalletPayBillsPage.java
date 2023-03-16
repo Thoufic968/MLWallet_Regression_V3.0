@@ -13,6 +13,8 @@ public class MLWalletPayBillsPage {
 
     public static By objSavedBiller = By.xpath("//*[@text='Saved Biller']");
 
+    public static By objSavedBillers = By.xpath("//*[@text='Saved Billers']");
+
     public static By objCategories = By.xpath("//*[@text='Categories']");
 
     public static By objAlphabetical = By.xpath("//*[@text='Alphabetical']");
@@ -36,9 +38,12 @@ public class MLWalletPayBillsPage {
 
     public static By objBillerNameInBillsPayInformation = By.xpath("//*[@text='Biller']/following-sibling::android.widget.EditText");
 
-    public static By objSearchBiller = By.xpath("//*[@text='Billers']/following-sibling::android.widget.EditText");
+    public static By objSearchBiller = By.xpath("//*[@text='Billers']/parent::android.view.ViewGroup/following-sibling::android.widget.EditText");
 
+    public static By objSearchBillerInSavedBillers = By.xpath("//*[@class='android.widget.EditText']");
     public static By objMisBillsPayBiller = By.xpath("//*[@text='MIS BILLSPAY123456']");
+
+    public static By objEditBtn = By.xpath("//*[@text='Edit']");
 
     public static By objAccountNumberField = By.xpath("(//*[@text='Billing Information']/following-sibling::android.widget.EditText)[1]");
 
@@ -72,7 +77,7 @@ public class MLWalletPayBillsPage {
 
     public static By objAccountNumber = By.xpath("(//*[@resource-id='Account Number'])[2]");
 
-    public static By objPaymentMethod = By.xpath("(//*[@resource-id='Payment method'])[2]");
+    public static By objPaymentMethod = By.xpath("(//*[@resource-id='Payment Method'])[2]");
 
     public static By objPayBtn = By.xpath("//*[contains(@text,'Pay P')]");
 
@@ -96,6 +101,53 @@ public class MLWalletPayBillsPage {
 
     public static By objProceedBtn = By.xpath("//*[@text='Proceed']");
 
+    public static By objSuccessPillPaymentMsg = By.xpath("//*[@text='Bills Payment Successful']");
+
+    public static By objAmountPaid = By.xpath("(//*[@text='Bills Payment Successful']/following-sibling::android.widget.TextView)[1]");
+
+    public static By objPaidDate = By.xpath("(//*[@text='Bills Payment Successful']/following-sibling::android.widget.TextView)[2]");
+
+    public static By objTransactionDetails = By.xpath("//*[@text='Transaction Details']");
+
+    public static By objServiceFee = By.xpath("(//*[@resource-id='Service Fee'])[2]");
+
+    public static By objTotalAmount = By.xpath("(//*[@resource-id='Total'])[2]");
+
+    public static By objAmountToPay = By.xpath("(//*[@resource-id='Amount To Pay'])[2]");
+
+    public static By objAmountToSend = By.xpath("(//*[@resource-id='Amount to Send'])[2]");
+
+    public static By objBackToHomeBtn = By.xpath("//*[@text='Back To Home']");
+
+
+    public static By objTransactionNumber = By.xpath("(//*[@resource-id='Transaction No.'])[2]");
+
+    public static By objReferenceNumber = By.xpath("(//*[@resource-id='Reference Number'])[2]");
+
+    public static By objReceiverName = By.xpath("(//*[@resource-id='Receiver Name'])[2]");
+
+    public static By objReceiverMobNo = By.xpath("(//*[@resource-id='Receiver Mobile No.'])[2]");
+
+    public static By objSearchSavedBiller  = By.xpath("//*[@class='android.widget.EditText']");
+
+    public static By objOKBtn=By.xpath("//*[@text='Ok']");
+
+    public static By objSelectLastName(String sLastName,String sFirstName){
+        return By.xpath("//*[contains(@text,'"+sLastName+", "+sFirstName+"')]");
+    }
+
+    public static By objEditRecipientLastName = By.xpath("(//*[@class='android.widget.EditText'])[4]");
+
+    public static  By ObjSaveBtn = By.xpath("//*[@text='Save']");
+
+    public static By objSelectBillerInnSavedBiller (String text){
+        return By.xpath("//*[@text='"+text+"']");
+    }
+
+
+    public static By objRemoveBtn = By.xpath("//*[@text='Remove']");
+
+    public static By objConfirmPopup = By.xpath("//*[@text='Are you sure to remove this record?']");
 
 
 }

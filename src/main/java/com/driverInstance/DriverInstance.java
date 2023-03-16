@@ -85,6 +85,15 @@ public class DriverInstance extends Drivertools {
 		Utilities.initDriver();
 	}
 
+
+
+
+
+
+
+
+
+
 	/**
 	 * @param application
 	 * @return Android capabilities

@@ -12,5 +12,7 @@ public class MLWalletHomePage {
 
     public static By objWalletToWallet = By.xpath("(//*[@text='Wallet to Wallet'])[1]");
 
+    public static By objPayBills = By.xpath("(//*[@text='Posted']/parent::android.view.ViewGroup/following-sibling::android.widget.TextView)[1]");
+
 
 }

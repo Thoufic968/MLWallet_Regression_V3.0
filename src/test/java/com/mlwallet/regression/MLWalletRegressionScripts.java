@@ -27,15 +27,15 @@ public class MLWalletRegressionScripts {
 	@Test(priority = 0)
 	public void LogInScenarioWithValidMobNumber() throws Exception
 	{
-		MLWalletBusinessLogic.LogInScenarioWithValidMobNumber_Lgn_TC_01();
+		MLWalletBusinessLogic.logInScenarioWithValidMobNumber_Lgn_TC_01();
 	}
 	@Test(priority = 1)
 	public void LogInScenarioWithInvalidMobNumber() throws Exception {
-		MLWalletBusinessLogic.LogInScenarioWithInvalidMobNumber_Lgn_TC_02();
+		MLWalletBusinessLogic.logInScenarioWithInvalidMobNumber_Lgn_TC_02();
 	}
 	@Test(priority = 2)
 	public void LogInScenarioWithValidOTP() throws Exception {
-		 MLWalletBusinessLogic.LogInScenarioWithValidOTP();
+		 MLWalletBusinessLogic.logInScenarioWithValidOTP_Lgn_TC_03();
 	}
 
 //===================================== CashOut/Withdraw =======================================================//
@@ -205,7 +205,7 @@ public class MLWalletRegressionScripts {
 	@Test(priority = 29)
 	public void mlWalletTransactionHistory_Scenario() throws Exception
 	{
-		MLWalletBusinessLogic.mlWallet_TransactionHistory();
+		MLWalletBusinessLogic.mlWallet_TransactionHistory_TH_TC_01();
 	}
 
 	@Test(priority = 30)
@@ -285,10 +285,10 @@ public class MLWalletRegressionScripts {
 //        MLWalletBusinessLogic.addBillerToPayBills();
 //    }
 
-	@Test(priority = 44)
-	public void addBillerInvalidInputs() throws Exception {
-		MLWalletBusinessLogic.addBillerInvalidInputs();
-	}
+//	@Test(priority = 44)
+//	public void addBillerInvalidInputs() throws Exception {
+//		MLWalletBusinessLogic.addBillerInvalidInputs_PB_TC_13();
+//	}
 
 
 

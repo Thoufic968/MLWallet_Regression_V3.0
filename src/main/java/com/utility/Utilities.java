@@ -101,7 +101,7 @@ public class Utilities extends ExtentReporter {
         return 30;
     }
 
-    protected static WebDriver getWebDriver() {
+    public static WebDriver getWebDriver() {
         return DriverInstance.tlWebDriver.get();
     }
     
@@ -346,7 +346,7 @@ public class Utilities extends ExtentReporter {
                 }
             } catch (Exception e) {
             }
-        } else if (platform.equalsIgnoreCase("mpwa")) {
+        } else if (platform.equalsIgnoreCase("Android")) {
             try {
                 WebElement element = DriverManager.getAppiumDriver().findElement(byLocator);
                 if (element.isDisplayed()) {
@@ -2839,6 +2839,13 @@ public class Utilities extends ExtentReporter {
 //            logger.error(e);
 //        }
 //    }
+
+
+
+
+
+
+
 
 }
 		

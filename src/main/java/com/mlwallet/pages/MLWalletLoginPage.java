@@ -27,4 +27,22 @@ public class MLWalletLoginPage {
 
 	public static By objLocationPopup=By.xpath("//*[@text='Allow ML Wallet to access this device’s location?']");
 
+	public static By objTroubleSigningIn = By.xpath("//*[@text='Trouble signing in?']");
+
+	public static By objTroubleSigningPage = By.xpath("//*[@text='Trouble Signing In']");
+
+	public static By objMLWalletSupport = By.xpath("(//*[@text='ML Wallet Support'])[2]");
+
+	public static By objBranchLocator = By.xpath("//*[@text='Branch Locator']");
+
+	public static By objAppVersion = By.xpath("//*[@resource-id='346187']");
+
+	public static By objHaveAnAccountMsg = By.xpath("//*[@text='Don’t have an account?']");
+
+	public static By objCreateOneBtn = By.xpath("//*[@text=' Create one']");
+
+	public static By objRegistrationNumber = By.xpath("//*[@text='Registration Number']");
+
+	public static By objResendCode = By.xpath("//*[contains(@text,'Resend Code')]");
+
 }

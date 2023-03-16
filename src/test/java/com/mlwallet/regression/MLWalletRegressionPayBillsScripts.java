@@ -1,6 +1,7 @@
 package com.mlwallet.regression;
 
 import com.business.mlwallet.MLWalletBusinessLogic;
+import com.mlwallet.pages.MLWalletPayBillsPage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -55,25 +56,47 @@ public class MLWalletRegressionPayBillsScripts {
         MLWalletBusinessLogic.billingInformationInput_PB_TC_06();
     }
 
-    @Test(priority = 7)
-    public void billingInformationInvalidInput() throws Exception {
+
+   @Test(priority = 7)
+    public void payBillsWithValidInputs_PB_TC_07() throws Exception {
+        MLWalletBusinessLogic.payBillsWithValidInputs_PB_TC_07();
+    }
+
+    @Test(priority = 8)
+    public void payBillsInRecentTransactions_PB_TC_08() throws Exception {
+        MLWalletBusinessLogic.payBillsInRecentTransactions_PB_TC_08();
+    }
+
+    @Test(priority = 9)
+    public void payBillsInsufficientBalance_PB_TC_09() throws Exception {
+        MLWalletBusinessLogic.payBillsInsufficientBalance_PB_TC_09();
+    }
+
+    @Test(priority = 10)
+    public void billingInformationInvalidInput_PB_TC_10() throws Exception {
         MLWalletBusinessLogic.billingInformationInvalidInput_PB_TC_10();
     }
 
-//   @Test(priority = 8)
-//    public void payBillsWithValidInputs() throws Exception {
-//        MLWalletBusinessLogic.payBillsWithValidInputs();
-//    }
 
-//   @Test(priority = 9)
-//    public void addBillerToPayBills() throws Exception {
-//        MLWalletBusinessLogic.addBillerToPayBills();
-//    }
+   @Test(priority = 11)
+    public void addBillerToPayBills_PB_TC_12() throws Exception {
+        MLWalletBusinessLogic.addBillerToPayBills_PB_TC_12();
+    }
 
-    @Test(priority = 10)
-    public void addBillerInvalidInputs() throws Exception {
-        MLWalletBusinessLogic.addBillerInvalidInputs();
+//   @Test(priority = 12)
+//   public void addBillerInvalidInputs() throws Exception {
+//        MLWalletBusinessLogic.addBillerInvalidInputs_PB_TC_13();
+//  }
+
+
+    @Test(priority = 13)
+    public void editAddedBillerToPayBills_PB_TC_14() throws Exception {
+        MLWalletBusinessLogic.editAddedBillerToPayBills_PB_TC_14();
     }
 
 
+    @Test(priority = 14)
+    public void deleteAddedBillerPayBills() throws Exception {
+        MLWalletBusinessLogic.deleteAddedBillerPayBills_PB_TC_15();
+    }
 }
