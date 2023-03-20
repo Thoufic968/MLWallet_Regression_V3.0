@@ -38,38 +38,38 @@ public class MLWalletRegressionScripts2 {
 	@Test(priority = 3)
 	public void sendToMLWalletInvalidMobNumber() throws Exception
 	{
-		MLWalletBusinessLogic.sendToMLWalletInvalidMobNumber();
+		MLWalletBusinessLogic.sendToMLWalletInvalidMobNumber_STW_TC_03();
 	}
 
 
 	@Test(priority = 4)
 	public void sendToMLWalletUnRegisteredNumber() throws Exception
 	{
-		MLWalletBusinessLogic.sendToMLWalletUnRegisteredNumber();
+		MLWalletBusinessLogic.sendToMLWalletUnRegisteredNumber_STW_TC_04();
 	}
 
 	@Test(priority = 5)
 	public void sendToMLWalletInvalidAmount() throws Exception
 	{
-		MLWalletBusinessLogic.sendToMLWalletInvalidAmount("0");
+		MLWalletBusinessLogic.sendToMLWalletInvalidAmount_STW_TC_05("0");
 	}
 
 	@Test(priority = 6)
 	public void sendToMLWalletInsufficientAmount() throws Exception
 	{
-		MLWalletBusinessLogic.sendToMLWalletInsufficientAmount();
+		MLWalletBusinessLogic.sendToMLWalletInsufficientAmount_STW_TC_06();
 	}
 
 	@Test(priority = 7)
 	public void sendMoneyMLWalletMaximumAmount() throws Exception
 	{
-		MLWalletBusinessLogic.sendMoneyMLWalletMaximumAmount();
+		MLWalletBusinessLogic.sendMoneyMLWalletMaximumAmount_STW_TC_07();
 	}
 
 	@Test(priority = 8)
 	public void sendMoneyDeleteFromFavorites() throws Exception
 	{
-		MLWalletBusinessLogic.sendMoneyDeleteFromFavorites();
+		MLWalletBusinessLogic.sendMoneyDeleteFromFavorites_STW_TC_09();
 	}
 
 	@Test(priority = 9)

@@ -26,27 +26,47 @@ public class MLWalletCashInViaBranch {
     //******************* Cash In Via Branch ====================================/
 
     @Test(priority = 1)
-    public void mlWallet_cashInViaBranch_validAmount() throws Exception
+    public void cashInviaBranch_ValidAmount_Scenario_CIBR_TC_01() throws Exception
     {
-        MLWalletBusinessLogic.mlWalletCashInviaBranch_ValidAmount_Scenario();
+        MLWalletBusinessLogic.cashInviaBranch_ValidAmount_Scenario_CIBR_TC_01();
     }
 
     @Test(priority = 2)
-    public void mlWallet_cashInViaBranch_cancel_transaction() throws Exception
+    public void cashInViaBranchCancelTransactionScenario_CIBR_TC_02() throws Exception
     {
-        MLWalletBusinessLogic.mlWalletCashInViaBranchCancelTransactionScenario();
+        MLWalletBusinessLogic.cashInViaBranchCancelTransactionScenario_CIBR_TC_02();
     }
 
     @Test(priority = 3)
-    public void mlWallet_cashInViaBranch_invalid_amount() throws Exception
+    public void cashInviaBranch_Invalid_Amount_CIBR_TC_03() throws Exception
     {
-        MLWalletBusinessLogic.mlWalletCashInviaBranch_Invalid_Amount();
+        MLWalletBusinessLogic.cashInviaBranch_Invalid_Amount_CIBR_TC_03();
     }
 
     @Test(priority = 4)
-    public void mlWallet_cashInViaBranch_maximum_limit_transaction() throws Exception
+    public void cashInViaBranch_Maximum_Limit_Amount_CIBR_TC_04() throws Exception
     {
-        MLWalletBusinessLogic.mlWalletCashInviaBranch_Maximum_Limit_Amount();
+        MLWalletBusinessLogic.cashInViaBranch_Maximum_Limit_Amount_CIBR_TC_04();
     }
+
+
+//============================================================================================================//
+
+
+    @Test(priority = 5)
+    public void cashInViaBRanchInvalidAmount_CIBR_TC_05() throws Exception {
+        MLWalletBusinessLogic.cashInViaBRanchInvalidAmount_CIBR_TC_05();
+    }
+
+    @Test(priority = 6)
+    public void cashInViaBranchUIValidation_CIBR_TC_06() throws Exception {
+        MLWalletBusinessLogic.cashInViaBranchUIValidation_CIBR_TC_06();
+    }
+
+    @Test(priority = 7)
+    public void cashInViaBranchBackBtnValidation_CIBR_TC_07() throws Exception {
+        MLWalletBusinessLogic.cashInViaBranchBackBtnValidation_CIBR_TC_07();
+    }
+
 
 }

@@ -168,38 +168,38 @@ public class MLWalletRegressionScripts {
 	@Test(priority = 23)
 	public void sendToMLWalletInvalidMobNumber() throws Exception
 	{
-		MLWalletBusinessLogic.sendToMLWalletInvalidMobNumber();
+		MLWalletBusinessLogic.sendToMLWalletInvalidMobNumber_STW_TC_03();
 	}
 
 
 	@Test(priority = 24)
 	public void sendToMLWalletUnRegisteredNumber() throws Exception
 	{
-		MLWalletBusinessLogic.sendToMLWalletUnRegisteredNumber();
+		MLWalletBusinessLogic.sendToMLWalletUnRegisteredNumber_STW_TC_04();
 	}
 
 	@Test(priority = 25)
 	public void sendToMLWalletInvalidAmount() throws Exception
 	{
-		MLWalletBusinessLogic.sendToMLWalletInvalidAmount("0");
+		MLWalletBusinessLogic.sendToMLWalletInvalidAmount_STW_TC_05("0");
 	}
 
 	@Test(priority = 26)
 	public void sendToMLWalletInsufficientAmount() throws Exception
 	{
-		MLWalletBusinessLogic.sendToMLWalletInsufficientAmount();
+		MLWalletBusinessLogic.sendToMLWalletInsufficientAmount_STW_TC_06();
 	}
 
 	@Test(priority = 27)
 	public void sendMoneyMLWalletMaximumAmount() throws Exception
 	{
-		MLWalletBusinessLogic.sendMoneyMLWalletMaximumAmount();
+		MLWalletBusinessLogic.sendMoneyMLWalletMaximumAmount_STW_TC_07();
 	}
 
 	@Test(priority = 28)
 	public void sendMoneyDeleteFromFavorites() throws Exception
 	{
-		MLWalletBusinessLogic.sendMoneyDeleteFromFavorites();
+		MLWalletBusinessLogic.sendMoneyDeleteFromFavorites_STW_TC_09();
 	}
 //
 	@Test(priority = 29)

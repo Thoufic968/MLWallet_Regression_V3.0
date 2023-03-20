@@ -130,7 +130,13 @@ public class SendTransferPage {
 
     public static By objViewAllBtn = By.xpath("//*[@text='View All']");
 
-    public static By objEllipsisBtn = By.xpath("((//*[@class='android.view.ViewGroup' and ./parent::*[@class='android.widget.ScrollView']]/*/*[@class='android.view.ViewGroup' and ./parent::*[@class='android.view.ViewGroup']])[1]/*/*/*[@class='android.widget.TextView' and ./parent::*[@class='android.view.ViewGroup']])[3]");
+    public static By objRecentFavorites = By.xpath("//*[@text='Recent Favorites']");
+
+    public static By objReceiver = By.xpath("//*[@text='Receiver']");
+
+    public static By objFavorites = By.xpath("(//*[@class='android.view.ViewGroup' and ./parent::*[@class='android.widget.HorizontalScrollView']]/*/*[@class='android.view.ViewGroup' and ./*[@text]])[1]");
+
+    public static By objEllipsisBtn = By.xpath("//*[@text='Singh, Sharath Nm']/parent::android.view.ViewGroup/parent::android.view.ViewGroup/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup");
 
     public static By objDeleteBtn = By.xpath("//*[@text='Delete']");
 
@@ -163,5 +169,16 @@ public class SendTransferPage {
     public static By objAmountToSend = By.xpath("//*[@text='Amount to Send']");
 
     public static By objKwartaPadalaDate = By.xpath("//*[@text='Kwarta Padala']/following-sibling::android.widget.TextView");
+
+    public static By objFavoriteReceiver = By.xpath("//*[@text='09999999996']");
+
+    public static By ObjFavorites = By.xpath("//*[@text='Favorites']");
+
+    public static By objSearchFavoriteField = By.xpath("//*[@class='android.widget.EditText']");
+
+    public static By objCancelTransaction = By.xpath("//*[@text='Cancel Transaction']");
+
+    public static By objAddedFavorite = By.xpath("//*[@text='Singh, Sharath Nm']");
+
 
 }

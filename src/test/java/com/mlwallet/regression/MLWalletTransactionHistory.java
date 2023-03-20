@@ -73,10 +73,47 @@ public class MLWalletTransactionHistory {
         MLWalletBusinessLogic.transactionHistoryUIValidation_TH_TC_10();
     }
 
-//    @Test(priority = 11)
-//    public void transactionHistoryFirstTransactionValidation_TH_TC_13() throws Exception {
-//        MLWalletBusinessLogic.transactionHistoryFirstTransactionValidation_TH_TC_13();
-//    }
+    @Test(priority = 11)
+    public void transactionHistoryBillsPayTransactionDetailsValidation_TH_TC_13() throws Exception {
+        MLWalletBusinessLogic.transactionHistoryBillsPayTransactionDetailsValidation_TH_TC_13();
+    }
+
+    @Test(priority = 12)
+    public void transactionHistoryELoadTransactionDetailsValidation_TH_TC_14() throws Exception {
+        MLWalletBusinessLogic.transactionHistoryELoadTransactionDetailsValidation_TH_TC_14();
+    }
+
+    @Test(priority = 13)
+    public void transactionHistorySendMoneyWalletToWalletTransactionDetailsValidation_TH_TC_15() throws Exception {
+        MLWalletBusinessLogic.transactionHistorySendMoneyWalletToWalletTransactionDetailsValidation_TH_TC_15();
+    }
+
+    @Test(priority = 14)
+    public void transactionHistorySendMoneyKwartaPadalaTransactionDetailsValidation_TH_TC_16() throws Exception {
+        MLWalletBusinessLogic.transactionHistorySendMoneyKwartaPadalaTransactionDetailsValidation_TH_TC_16();
+    }
+
+    @Test(priority = 15)
+    public void transactionHistoryCashInTransactionDetailsValidation_TH_TC_17() throws Exception {
+        MLWalletBusinessLogic.transactionHistoryCashInTransactionDetailsValidation_TH_TC_17();
+    }
+
+    @Test(priority = 16)
+    public void transactionHistoryCashOutTransactionDetailsValidation_TH_TC_18() throws Exception {
+        MLWalletBusinessLogic.transactionHistoryCashOutTransactionDetailsValidation_TH_TC_18();
+    }
+
+    @Test(priority = 17)
+    public void transactionHistoryReceiveMoneyTransactionDetailsValidation_TH_TC_19() throws Exception {
+        MLWalletBusinessLogic.transactionHistoryReceiveMoneyTransactionDetailsValidation_TH_TC_19();
+    }
+
+    @Test(priority = 18)
+    public void transactionHistoryMLShopTransactionDetailsValidation_TH_TC_20() throws Exception {
+        MLWalletBusinessLogic.transactionHistoryMLShopTransactionDetailsValidation_TH_TC_20();
+    }
+
+
 
 
 
