@@ -33,14 +33,14 @@
 <!--    		<class name="com.mlwallet.regression.MLWalletRegressionScripts" />-->
 
 			<class name="com.mlwallet.regression.MLWalletLoginScripts" />
-			<class name="com.mlwallet.regression.MLWalletCashInViaBankScripts" />
+<!--			<class name="com.mlwallet.regression.MLWalletCashInViaBankScripts" />-->
 			<class name="com.mlwallet.regression.MLWalletCashInViaBranch" />
 			<class name="com.mlwallet.regression.MLWalletCashOutWithdrawScripts" />
 			<class name="com.mlwallet.regression.MLWalletSendTransferToAnyMLBranchScripts" />
 			<class name="com.mlwallet.regression.MLWalletSendTransferToMLWalletUserScripts" />
 			<class name="com.mlwallet.regression.MLWalletRegressionPayBillsScripts" />
 			<class name="com.mlwallet.regression.MLWalletSettingScripts" />
-			<class name="com.mlwallet.regression.MLWalletShopItemScripts" />
+<!--			<class name="com.mlwallet.regression.MLWalletShopItemScripts" />-->
 			<class name="com.mlwallet.regression.MLWalletTransactionHistory" />
 			<class name="com.mlwallet.regression.MLWalletBuyEload" />
 <!--&lt;!&ndash;			&ndash;&gt;-->

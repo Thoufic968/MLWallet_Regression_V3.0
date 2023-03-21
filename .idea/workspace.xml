@@ -6,13 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6f78265c-f23c-4389-b616-2c880263c940" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/mlwallet/regression/MLWalletCashInViaBranch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/mlwallet/regression/MLWalletCashInViaBranch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/mlwallet/regression/MLWalletCashOutWithdrawScripts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/mlwallet/regression/MLWalletCashOutWithdrawScripts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/mlwallet/regression/MLWalletLoginScripts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/mlwallet/regression/MLWalletLoginScripts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/mlwallet/regression/MLWalletSendTransferToAnyMLBranchScripts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/mlwallet/regression/MLWalletSendTransferToAnyMLBranchScripts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/mlwallet/regression/MLWalletSendTransferToMLWalletUserScripts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/mlwallet/regression/MLWalletSendTransferToMLWalletUserScripts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/mlwallet/regression/MLWalletShopItemScripts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/mlwallet/regression/MLWalletShopItemScripts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/mlwallet/regression/MLWalletTransactionHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/mlwallet/regression/MLWalletTransactionHistory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mlwallet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mlwallet.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
