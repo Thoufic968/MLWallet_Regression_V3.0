@@ -68,6 +68,9 @@ public class MLWalletTransactionHistory {
         MLWalletBusinessLogic.mlShopTransactionHistory_TH_TC_09();
     }
 
+
+//======================================================================================================//
+
     @Test(priority = 10)
     public void transactionHistoryUIValidation() throws Exception {
         MLWalletBusinessLogic.transactionHistoryUIValidation_TH_TC_10();

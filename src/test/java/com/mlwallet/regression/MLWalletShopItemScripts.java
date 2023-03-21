@@ -27,7 +27,6 @@ public class MLWalletShopItemScripts {
     public void mlWalletShopItems_Scenario() throws Exception
     {
         MLWalletBusinessLogic.mlWallet_ShopItems_without_Input_Otp();
-
     }
 
     @Test(priority = 2)
